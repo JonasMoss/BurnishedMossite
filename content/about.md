@@ -15,7 +15,7 @@ This blog is made in [RStudio](https://www.rstudio.com/) with
 [blogdown](https://bookdown.org/yihui/blogdown/other-themes.html), using
 [Hugo](https://gohugo.io/) and the 
 [Tranquilpeak theme](https://github.com/kakawait/hugo-tranquilpeak-theme). The `.Rmd`
-source files for all posts are available on GitHub.
+source files for all posts are available on [GitHub](https://github.com/JonasMoss/BurnishedMossite).
 
 The mineral to the right is a [tapiolite](https://en.wikipedia.org/wiki/Tapiolite),
 which is related to the mineral [mossite](https://www.mindat.org/min-29108.html)
