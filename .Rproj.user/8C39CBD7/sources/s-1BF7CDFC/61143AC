@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1524909079397.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1684412597",
+    "id" : "61143AC",
+    "lastKnownWriteTime" : 1524909154,
+    "last_content_update" : 1524909154822,
+    "path" : "C:/Projects/BurnishedMossite/config.toml",
+    "project_path" : "config.toml",
+    "properties" : {
+        "cursorPosition" : "20,36",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "toml"
+}
