@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Burnished Mossite</title>
-    <link>/burnishedmossite.netlify.com/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 28 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/burnishedmossite.netlify.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Optional Stopping</title>
-      <link>/burnishedmossite.netlify.com/tags/optional-stopping/</link>
+      <link>/tags/optional-stopping/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/tags/optional-stopping/</guid>
+      <guid>/tags/optional-stopping/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Psychological Methods</title>
-      <link>/burnishedmossite.netlify.com/tags/psychological-methods/</link>
+      <link>/tags/psychological-methods/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/tags/psychological-methods/</guid>
+      <guid>/tags/psychological-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/burnishedmossite.netlify.com/tags/r/</link>
+      <link>/tags/r/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/tags/r/</guid>
+      <guid>/tags/r/</guid>
       <description></description>
     </item>
     

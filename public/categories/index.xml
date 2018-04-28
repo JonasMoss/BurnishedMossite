@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Burnished Mossite</title>
-    <link>/burnishedmossite.netlify.com/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/burnishedmossite.netlify.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Science</title>
-      <link>/burnishedmossite.netlify.com/categories/science/</link>
+      <link>/categories/science/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/categories/science/</guid>
+      <guid>/categories/science/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Statistics</title>
-      <link>/burnishedmossite.netlify.com/categories/statistics/</link>
+      <link>/categories/statistics/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/categories/statistics/</guid>
+      <guid>/categories/statistics/</guid>
       <description></description>
     </item>
     

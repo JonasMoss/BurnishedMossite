@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3527402573",
+    "hash" : "0",
     "id" : "61143AC",
-    "lastKnownWriteTime" : 1524911953,
-    "last_content_update" : 1524911954009,
+    "lastKnownWriteTime" : 1524912072,
+    "last_content_update" : 1524912072238,
     "path" : "C:/Projects/BurnishedMossite/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "14,38",
+        "cursorPosition" : "15,48",
         "scrollLine" : "7"
     },
     "relative_order" : 3,

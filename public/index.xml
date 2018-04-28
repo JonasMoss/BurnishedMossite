@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Burnished Mossite</title>
-    <link>/burnishedmossite.netlify.com/</link>
+    <link>/</link>
     <description>Recent content on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 28 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/burnishedmossite.netlify.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>/burnishedmossite.netlify.com/about/</link>
+      <link>/about/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/about/</guid>
+      <guid>/about/</guid>
       <description>I&amp;rsquo;m Jonas Moss, a statistics PhD student at the University of Oslo. I have two kids, two cats, and one wife. I&amp;rsquo;m interested in R programming, the replication crisis in psychology, theoretical statistics, effective altruism, and rationalism à la Lesswrong and Slate Star Codex.
 This blog is made in RStudio with blogdown, using Hugo and the Tranquilpeak theme. The .Rmd source files for all posts are available on GitHub.
 The mineral to the right is a tapiolite, which is related to the mineral mossite this blog is named after.</description>
@@ -24,20 +24,20 @@ The mineral to the right is a tapiolite, which is related to the mineral mossite
     
     <item>
       <title>Optional stopping, streaks, and champagne</title>
-      <link>/burnishedmossite.netlify.com/2018/04/optional-stopping-streaks/</link>
+      <link>/2018/04/optional-stopping-streaks/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/2018/04/optional-stopping-streaks/</guid>
+      <guid>/2018/04/optional-stopping-streaks/</guid>
       <description>At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
 Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.</description>
     </item>
     
     <item>
       <title></title>
-      <link>/burnishedmossite.netlify.com/about/</link>
+      <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/burnishedmossite.netlify.com/about/</guid>
+      <guid>/about/</guid>
       <description></description>
     </item>
     
