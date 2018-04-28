@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Optional Stopping on Burnished Mossite</title>
-    <link>/tags/optional-stopping/</link>
+    <link>/burnishedmossite.netlify.com/tags/optional-stopping/</link>
     <description>Recent content in Optional Stopping on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 28 Apr 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/optional-stopping/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/burnishedmossite.netlify.com/tags/optional-stopping/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Optional stopping, streaks, and champagne</title>
-      <link>/2018/04/optional-stopping-streaks/</link>
+      <link>/burnishedmossite.netlify.com/2018/04/optional-stopping-streaks/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/04/optional-stopping-streaks/</guid>
+      <guid>/burnishedmossite.netlify.com/2018/04/optional-stopping-streaks/</guid>
       <description>At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
 Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.</description>
     </item>
