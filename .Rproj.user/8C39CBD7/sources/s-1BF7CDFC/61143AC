@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "61143AC",
-    "lastKnownWriteTime" : 1524909154,
-    "last_content_update" : 1524909154822,
+    "lastKnownWriteTime" : 1524911821,
+    "last_content_update" : 1524911821732,
     "path" : "C:/Projects/BurnishedMossite/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "20,37",
-        "scrollLine" : "10"
+        "cursorPosition" : "15,19",
+        "scrollLine" : "7"
     },
     "relative_order" : 3,
     "source_on_save" : false,
