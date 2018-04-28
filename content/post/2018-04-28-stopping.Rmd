@@ -1,0 +1,246 @@
+---
+title: "Optional stopping can't be fixed by adding streaks"
+author: "Jonas Moss"
+date: '2018-04-28'
+slug: optional-stopping-streaks
+tags:
+- psychological methods
+- optional stopping
+- R
+categories:
+- science
+- statistics
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+load(file = "2018-04-28-stopping.rds")
+```
+
+At the Psychological Methods Discussion group, Ben Ambridge asked the following 
+question:
+
+> Hi everyone - I was wondering (don't worry, I haven't actually done this!) 
+> what would be wrong statistically speaking with an approach where you run a 
+> frequentist t-test (or whatever) after adding each participant and stop 
+> testing participants when the p value has remained below 0.05 
+> (or 0.001 or whatever) for - say - each of the last 20 participants. 
+> It feels like it must be wrong somehow, but why?
+
+The thread, which contains several good comments, is [here.](https://www.facebook.com/groups/853552931365745/permalink/1721184561269240/)
+Some of the replies mention simulations, but no simulations are actually presented. 
+And that brings us to the purpose of this post, namely to run a small simulation 
+study to asses what happens under Ben Ambridge's scenario.
+
+But first let's understand the inuition behind this proposal. Consider a 
+sequence of coin tosses. If the true probability of success is $p$, the 
+probability of $k$ successes in a row is $p^{k}$. If $p = 0.05$, the probability
+of 20 consequtive successes equals $0.05^{20} \approx 10^-26$. So if we assume
+independence of the tests, a 20-ary streak gives us strong evidence against 
+$H_{0}$.
+
+The counterintuition is as follows. The sequence of estimators $T_{i}$ is *not 
+independent*. It could take a long time to throw away already obtained information,
+so that $T_{i}$ and $T_{j}$ become approximately independent. 
+
+Notice that Ben's problem can be understood in two ways:
+
+1. *Scenario A*: The researcher decides in advance to collect at most 
+   $n$ samples. If she observes a streak in this sample, she pops the champagne. 
+   If she doesn't observe a streak during the $n$ first samples,  but  her last 
+   computed test statistic is significant, she contiues to sample for at 
+   most $k-1$ steps ($k = 20$ in Ben's example). If she obtains a significant 
+   streak in this samples, she pops the champagne.
+2. *Scenario B*: The same thing, expect she will never sample more than $n$ 
+   participants.
+   
+Scenario A is the most plausible one. This is because scenario B makes it  
+possible to  observe a $k-1$-streak in the original sample which the researcher 
+wouldn't be allowed to attempt to extend to a $k$-streak. And problems of this 
+nature is the a big reason why people care about sequential testing.
+
+So let's say I have an $n$ denoting the maximal number of participants, a 
+sequence of test statistics $T_{n}$, a p-value $\alpha$ 
+(typically equal to $0.05$) anda sequence of cut-off values $c_{\alpha}(n)$. My
+two questions are then:
+
+1. What is the $k_{n}$ so that the probability of observing a streak of $k$ 
+   consecutive test statistics $T_{i} > c_{\alpha}(i)$ is less than or equal to
+   $\alpha$ under Scenario A?
+2. The same problem under Scenario B.
+
+Since I can't simulate every possible test statistic, I employ the usual trick
+and assume normality everywhere and always. Hence my test statistic is a 
+$z$-statistic, and my underlying problem is testing of $H_{0}: \mu = 0$ against
+$H_{0}: \mu > 0$ for a normal population with known standard deviation equal to
+$1$. Finally, my $p$-value is $0.05$.
+
+# Results
+Results are more interesting than code. Also, graphs are more interesting than 
+tables. So here are some graphs. Scroll down for the code.
+
+### First graph: Linearity
+The $n$s in this graph is the R vector `1:20*50` of evenly spaced natural 
+numbers. 
+
+```{r results-for-large-n, echo = FALSE}
+plot(ns, ks_A, xlab = "n", ylab = expression(k[n]),
+     main = "Least k for attaining level 0.05", bty = "l", pch = 20)
+abline(lm(ks_A ~ ns))
+points(ns, ks_B, pch = 20, col = "blue")
+abline(lm(ks_B ~ ns), col = "blue")
+legend("topleft", col = c("black", "blue"), pch = c(20, 20), lty = c(1, 1),
+       legend = c(paste0("Scenario A; Slope: ", 
+                         signif(coef(lm(ks_A ~ ns))[2],2)),
+                  paste0("Scenario B; Slope: ", 
+                         signif(coef(lm(ks_B ~ ns))[2],2))),
+       bty = "n")
+```
+Recall the definition of $k_{n}$: For each $n$, it is the required streak length
+to ascertain a $0.05$ level of the resulting test. So what can we read from this 
+graph?
+
+1.) The relationship is linear for both scenarios! 
+2.) For scenario A, the slope is approximately $\frac{1}{4}$, which means that
+    you will need a streak of length $\frac{1}{5} \cdot n$ to give the test a 
+    level of $0.05$. This is quite a lot. At least the proportion is smaller for
+    scenario B.
+    
+### Second graph: Small ns
+Maybe you're worried that linearity doesn't hold for small $n$s? That's 
+reasonable. So here's a graph of $n = \{1, 2, \cdots, 50\}$:
+
+```{r results-for-small-n, echo = FALSE}
+plot(ns_small , ks_A_small, type = "s", xlab = "n", ylab = expression(k[n]),
+     main = "Least k for attaining level 0.05", bty = "l")
+grid()
+points(ns_small , ks_A_small, pch = 20)
+lines(ns_small , ks_B_small, type = "s", col = "blue")
+points(ns_small , ks_B_small, pch = 20, col = "blue")
+abline(lm(ks_A_small ~ ns_small ))
+abline(lm(ks_B_small ~ ns_small ), col = "blue")
+legend("topleft", col = c("black", "blue"), pch = c(20, 20), lty = c(1, 1),
+       legend = c(paste0("Scenario A; Slope: ", 
+                         signif(coef(lm(ks_A_small~ ns_small ))[2],2)),
+                  paste0("Scenario B; Slope: ", 
+                         signif(coef(lm(ks_B_small ~ ns_small ))[2],2))),
+       bty = "n")
+```
+
+The regression coefficients are slightly different now, and I suspects there's 
+some weak non-linearity at the start of the function $k_{n}$. 
+
+### Third graph: Probability of rejecting the null
+Finally, here's a graph of the probability of rejecting the null for different 
+values of $k$. I've taken $n = 100$ here and
+
+```{r probability-plot, echo = FALSE}
+plot(x, y, xlab = "n", ylab = "Propobability of rejection", type = "l", lwd = 2,
+     main = paste0("Probability of rejection, n = ", n), bty = "l",
+     pch = 20, cex = 1.5)
+lines(x, z, type = "l", lwd = 2, lty = 3)
+legend("topright", col = c("black", "black", "blue", "red"), lwd = c(2, 2, 1, 1), 
+       lty = c(1, 3, 1, 1), 
+       legend = c("Scenario A", "Scenario B", "0.05 cutoff", "0.01 cutoff"),
+       bty = "n")
+abline(h = 0.05, lty = 2, col = "blue")
+abline(h = 0.01, lty = 2, col = "red")
+
+```
+
+What does it tell? For one, a significance level of $0.01$ (the red dotted line) 
+is out of reach for scenario A. This means that you can never use the 
+'scenario A' when aiming for this significance level. Scenario B is alright 
+though. I haven't checked this for any other $n$ than $100$.
+
+# Simulating an answer in R
+
+Here's my simulation code. I start off with a helper function for calculating 
+streaks in a boolean (logical) vector. The examples should help you understand
+what it does.
+
+```{r streak-checker, eval = FALSE}
+#' Find the cumulative maximal streak length in a vector of bools.
+#' 
+#' @param bools Logical vector.
+#' @return An integer vector. The \code{i}th element is the maximal streak
+#' length in \code{x[1:i]}.
+#' @example
+#'     bools1 = c(FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
+#'     streaks(bools1) [1] 0 1 1 1 2 3 3
+#'     
+#'     bools2 = c(FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE)
+#'     streaks(bools2) [1] 0 1 2 3 4 4 4
+
+streaks = function(bools) {
+  if(length(bools) == 0 | length(bools) == 1) return(as.integer(bools))
+  
+  streaks = vector("integer", length(bools))
+  counter = as.integer(bools[[1]])
+  streaks[[1]] = counter
+  
+  for(i in 2:length(bools)) {
+    if(bools[[i]]) {
+      counter = counter + 1
+      streaks[[i]] = max(streaks[[i - 1]], counter)
+    } else {
+      counter = 0
+      streaks[[i]] = streaks[[i - 1]]      
+    }
+  }
+  
+  streaks
+  
+}
+
+```
+
+The `streaks` function is used to find probabilities of rejecting the null 
+inside the following function:
+
+```{r streak_stopping, eval = FALSE}
+#' Simulate a compensating sequential design
+#' 
+#' Finds the probability of falsly rejecting the null-hypothesis for a 
+#' compensating sequential design for each \code{k} from 1 to n.
+#' 
+#' @param n The maximal number of attempts to obtain at a success.
+#' @param scenario String; "A" for scenario A, "B" for scenario B.
+#' @param N The number of simulations.
+#' @param C One-sided cut-off value for the z-statistics. Defaults to ~ 1.64. 
+#' @return A n-ary vector of probabilites. The ith value is the probability 
+#' of rejecting the null-hypothesis when a streak of length n is demanded.
+
+streak_stopping = function(n, N, C = qnorm(0.95), scenario = "A") {
+  
+  checked = array(dim = c(N, n))
+
+  for(i in 1:N){
+    streak = streaks(cumsum(rnorm(2*n - 1, 0, 1))/sqrt(1:(2*n - 1)) > C)
+    if(scenario == "A") {
+      for(j in 1:n) {
+        checked[i, j] = if(streak[n + j - 1] >= j) 1 else 0
+      }
+    } else if(scenario == "B") {
+      for(j in 1:n) {
+        checked[i, j] = if(streak[n] >= j) 1 else 0
+      }     
+    }
+  }
+  
+  colMeans(checked)
+  
+}
+```
+
+To find the $k_{n}$s, I used this:
+
+```{r find_kns, eval = FALSE} 
+ks = sapply(ns, function(n) {
+  which(streak_stopping(n, N, scenario = "A") < 0.05)[1]
+})
+```
+
+## Some comments
+The source code for this document, written in `bookdown`, is available at 
+Github. An `R` file reproducing the plots is [here](https://gist.github.com/JonasMoss/8f8e74fc675cc332f5e949862c909f03).

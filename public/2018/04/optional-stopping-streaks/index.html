@@ -1,0 +1,717 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.40.1 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Optional stopping can&#39;t be fixed by adding streaks</title>
+    <meta name="author" content="Jonas Moss">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
+Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.">
+    <meta property="og:description" content="At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
+Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Optional stopping can&#39;t be fixed by adding streaks">
+    <meta property="og:url" content="/2018/04/optional-stopping-streaks/">
+    <meta property="og:site_name" content="Burnished Mossite">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Burnished Mossite">
+    <meta name="twitter:description" content="At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
+Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.">
+    
+      <meta name="twitter:creator" content="@JonasMoss313">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/c85bf00f72a796a008407e50b3c6c855?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="2">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Burnished Mossite</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/c85bf00f72a796a008407e50b3c6c855?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    });
+    </script>
+    <script type="text/javascript"
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="2">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/c85bf00f72a796a008407e50b3c6c855?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Jonas Moss</h4>
+        
+          <h5 class="sidebar-profile-bio">Meta-contrarian statistician who wants to save science.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/about/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/JonasMoss">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="2"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Optional stopping can&#39;t be fixed by adding streaks
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-04-28T00:00:00Z">
+        
+  April 28, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/science">science</a>, 
+    
+      <a class="category-link" href="/categories/statistics">statistics</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>At the Psychological Methods Discussion group, Ben Ambridge asked the following question:</p>
+<blockquote>
+<p>Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants. It feels like it must be wrong somehow, but why?</p>
+</blockquote>
+<p>The thread, which contains several good comments, is <a href="https://www.facebook.com/groups/853552931365745/permalink/1721184561269240/">here.</a> Some of the replies mention simulations, but no simulations are actually presented. And that brings us to the purpose of this post, namely to run a small simulation study to asses what happens under Ben Ambridge’s scenario.</p>
+<p>But first let’s understand the inuition behind this proposal. Consider a sequence of coin tosses. If the true probability of success is <span class="math inline">\(p\)</span>, the probability of <span class="math inline">\(k\)</span> successes in a row is <span class="math inline">\(p^{k}\)</span>. If <span class="math inline">\(p = 0.05\)</span>, the probability of 20 consequtive successes equals <span class="math inline">\(0.05^{20} \approx 10^-26\)</span>. So if we assume independence of the tests, a 20-ary streak gives us strong evidence against <span class="math inline">\(H_{0}\)</span>.</p>
+<p>The counterintuition is as follows. The sequence of estimators <span class="math inline">\(T_{i}\)</span> is <em>not independent</em>. It could take a long time to throw away already obtained information, so that <span class="math inline">\(T_{i}\)</span> and <span class="math inline">\(T_{j}\)</span> become approximately independent.</p>
+<p>Notice that Ben’s problem can be understood in two ways:</p>
+<ol style="list-style-type: decimal">
+<li><em>Scenario A</em>: The researcher decides in advance to collect at most <span class="math inline">\(n\)</span> samples. If she observes a streak in this sample, she pops the champagne. If she doesn’t observe a streak during the <span class="math inline">\(n\)</span> first samples, but her last computed test statistic is significant, she contiues to sample for at most <span class="math inline">\(k-1\)</span> steps (<span class="math inline">\(k = 20\)</span> in Ben’s example). If she obtains a significant streak in this samples, she pops the champagne.</li>
+<li><em>Scenario B</em>: The same thing, expect she will never sample more than <span class="math inline">\(n\)</span> participants.</li>
+</ol>
+<p>Scenario A is the most plausible one. This is because scenario B makes it<br />
+possible to observe a <span class="math inline">\(k-1\)</span>-streak in the original sample which the researcher wouldn’t be allowed to attempt to extend to a <span class="math inline">\(k\)</span>-streak. And problems of this nature is the a big reason why people care about sequential testing.</p>
+<p>So let’s say I have an <span class="math inline">\(n\)</span> denoting the maximal number of participants, a sequence of test statistics <span class="math inline">\(T_{n}\)</span>, a p-value <span class="math inline">\(\alpha\)</span> (typically equal to <span class="math inline">\(0.05\)</span>) anda sequence of cut-off values <span class="math inline">\(c_{\alpha}(n)\)</span>. My two questions are then:</p>
+<ol style="list-style-type: decimal">
+<li>What is the <span class="math inline">\(k_{n}\)</span> so that the probability of observing a streak of <span class="math inline">\(k\)</span> consecutive test statistics <span class="math inline">\(T_{i} &gt; c_{\alpha}(i)\)</span> is less than or equal to <span class="math inline">\(\alpha\)</span> under Scenario A?</li>
+<li>The same problem under Scenario B.</li>
+</ol>
+<p>Since I can’t simulate every possible test statistic, I employ the usual trick and assume normality everywhere and always. Hence my test statistic is a <span class="math inline">\(z\)</span>-statistic, and my underlying problem is testing of <span class="math inline">\(H_{0}: \mu = 0\)</span> against <span class="math inline">\(H_{0}: \mu &gt; 0\)</span> for a normal population with known standard deviation equal to <span class="math inline">\(1\)</span>. Finally, my <span class="math inline">\(p\)</span>-value is <span class="math inline">\(0.05\)</span>.</p>
+<div id="results" class="section level1">
+<h1>Results</h1>
+<p>Results are more interesting than code. Also, graphs are more interesting than tables. So here are some graphs. Scroll down for the code.</p>
+<div id="first-graph-linearity" class="section level3">
+<h3>First graph: Linearity</h3>
+<p>The <span class="math inline">\(n\)</span>s in this graph is the R vector <code>1:20*50</code> of evenly spaced natural numbers.</p>
+<p><img src="/post/2018-04-28-stopping_files/figure-html/results-for-large-n-1.png" width="672" /> Recall the definition of <span class="math inline">\(k_{n}\)</span>: For each <span class="math inline">\(n\)</span>, it is the required streak length to ascertain a <span class="math inline">\(0.05\)</span> level of the resulting test. So what can we read from this graph?</p>
+<p>1.) The relationship is linear for both scenarios! 2.) For scenario A, the slope is approximately <span class="math inline">\(\frac{1}{4}\)</span>, which means that you will need a streak of length <span class="math inline">\(\frac{1}{5} \cdot n\)</span> to give the test a level of <span class="math inline">\(0.05\)</span>. This is quite a lot. At least the proportion is smaller for scenario B.</p>
+</div>
+<div id="second-graph-small-ns" class="section level3">
+<h3>Second graph: Small ns</h3>
+<p>Maybe you’re worried that linearity doesn’t hold for small <span class="math inline">\(n\)</span>s? That’s reasonable. So here’s a graph of <span class="math inline">\(n = \{1, 2, \cdots, 50\}\)</span>:</p>
+<p><img src="/post/2018-04-28-stopping_files/figure-html/results-for-small-n-1.png" width="672" /></p>
+<p>The regression coefficients are slightly different now, and I suspects there’s some weak non-linearity at the start of the function <span class="math inline">\(k_{n}\)</span>.</p>
+</div>
+<div id="third-graph-probability-of-rejecting-the-null" class="section level3">
+<h3>Third graph: Probability of rejecting the null</h3>
+<p>Finally, here’s a graph of the probability of rejecting the null for different values of <span class="math inline">\(k\)</span>. I’ve taken <span class="math inline">\(n = 100\)</span> here and</p>
+<p><img src="/post/2018-04-28-stopping_files/figure-html/probability-plot-1.png" width="672" /></p>
+<p>What does it tell? For one, a significance level of <span class="math inline">\(0.01\)</span> (the red dotted line) is out of reach for scenario A. This means that you can never use the ‘scenario A’ when aiming for this significance level. Scenario B is alright though. I haven’t checked this for any other <span class="math inline">\(n\)</span> than <span class="math inline">\(100\)</span>.</p>
+</div>
+</div>
+<div id="simulating-an-answer-in-r" class="section level1">
+<h1>Simulating an answer in R</h1>
+<p>Here’s my simulation code. I start off with a helper function for calculating streaks in a boolean (logical) vector. The examples should help you understand what it does.</p>
+<pre class="r"><code>#&#39; Find the cumulative maximal streak length in a vector of bools.
+#&#39; 
+#&#39; @param bools Logical vector.
+#&#39; @return An integer vector. The \code{i}th element is the maximal streak
+#&#39; length in \code{x[1:i]}.
+#&#39; @example
+#&#39;     bools1 = c(FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE)
+#&#39;     streaks(bools1) [1] 0 1 1 1 2 3 3
+#&#39;     
+#&#39;     bools2 = c(FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE)
+#&#39;     streaks(bools2) [1] 0 1 2 3 4 4 4
+
+streaks = function(bools) {
+  if(length(bools) == 0 | length(bools) == 1) return(as.integer(bools))
+  
+  streaks = vector(&quot;integer&quot;, length(bools))
+  counter = as.integer(bools[[1]])
+  streaks[[1]] = counter
+  
+  for(i in 2:length(bools)) {
+    if(bools[[i]]) {
+      counter = counter + 1
+      streaks[[i]] = max(streaks[[i - 1]], counter)
+    } else {
+      counter = 0
+      streaks[[i]] = streaks[[i - 1]]      
+    }
+  }
+  
+  streaks
+  
+}
+</code></pre>
+<p>The <code>streaks</code> function is used to find probabilities of rejecting the null inside the following function:</p>
+<pre class="r"><code>#&#39; Simulate a compensating sequential design
+#&#39; 
+#&#39; Finds the probability of falsly rejecting the null-hypothesis for a 
+#&#39; compensating sequential design for each \code{k} from 1 to n.
+#&#39; 
+#&#39; @param n The maximal number of attempts to obtain at a success.
+#&#39; @param scenario String; &quot;A&quot; for scenario A, &quot;B&quot; for scenario B.
+#&#39; @param N The number of simulations.
+#&#39; @param C One-sided cut-off value for the z-statistics. Defaults to ~ 1.64. 
+#&#39; @return A n-ary vector of probabilites. The ith value is the probability 
+#&#39; of rejecting the null-hypothesis when a streak of length n is demanded.
+
+streak_stopping = function(n, N, C = qnorm(0.95), scenario = &quot;A&quot;) {
+  
+  checked = array(dim = c(N, n))
+
+  for(i in 1:N){
+    streak = streaks(cumsum(rnorm(2*n - 1, 0, 1))/sqrt(1:(2*n - 1)) &gt; C)
+    if(scenario == &quot;A&quot;) {
+      for(j in 1:n) {
+        checked[i, j] = if(streak[n + j - 1] &gt;= j) 1 else 0
+      }
+    } else if(scenario == &quot;B&quot;) {
+      for(j in 1:n) {
+        checked[i, j] = if(streak[n] &gt;= j) 1 else 0
+      }     
+    }
+  }
+  
+  colMeans(checked)
+  
+}</code></pre>
+<p>To find the <span class="math inline">\(k_{n}\)</span>s, I used this:</p>
+<pre class="r"><code>ks = sapply(ns, function(n) {
+  which(streak_stopping(n, N, scenario = &quot;A&quot;) &lt; 0.05)[1]
+})</code></pre>
+<div id="some-comments" class="section level2">
+<h2>Some comments</h2>
+<p>The source code for this document, written in <code>bookdown</code>, is available at Github. An <code>R</code> file reproducing the plots is <a href="https://gist.github.com/JonasMoss/8f8e74fc675cc332f5e949862c909f03">here</a>.</p>
+</div>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/psychological-methods/">psychological methods</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/optional-stopping/">optional stopping</a>
+
+  <a class="tag tag--primary tag--small" href="/tags/r/">R</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/04/optional-stopping-streaks/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/04/optional-stopping-streaks/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/04/optional-stopping-streaks/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Jonas Moss. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/04/optional-stopping-streaks/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/04/optional-stopping-streaks/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/04/optional-stopping-streaks/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F04%2Foptional-stopping-streaks%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F04%2Foptional-stopping-streaks%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2018%2F04%2Foptional-stopping-streaks%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/c85bf00f72a796a008407e50b3c6c855?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Jonas Moss</h4>
+    
+      <div id="about-card-bio">Meta-contrarian statistician who wants to save science.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Ph.d. student in statistics, Universitas Osloensis
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Oslo in Norway
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/04/optional-stopping-streaks/">
+                <h3 class="media-heading">Optional stopping can&#39;t be fixed by adding streaks</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
+Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         1 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/04\/optional-stopping-streaks\/';
+          
+            this.page.identifier = '\/2018\/04\/optional-stopping-streaks\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'JMoss313';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,2 @@
+"0","knitr::opts_chunk$set(collapse = TRUE)"
+"0","load(file = ""optimal_stopping.rds"")"

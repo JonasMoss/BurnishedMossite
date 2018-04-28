@@ -1,0 +1,2 @@
+"0","plot(ns_small , ks_A_small, type = ""s"", xlab = ""n"", ylab = expression(k[n]),"
+"0","     main = ""Least k for attaining level 0.05"", bty = ""l"")"

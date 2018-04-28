@@ -1,0 +1,4 @@
+"0","legend(""topright"", col = c(""black"", ""black"", ""blue"", ""red""), lwd = c(2, 2, 1, 1), "
+"0","       lty = c(1, 3, 1, 1), "
+"0","       legend = c(""Scenario A"", ""Scenario B"", ""0.05 cutoff"", ""0.01 cutoff""),"
+"0","       bty = ""n"")"
