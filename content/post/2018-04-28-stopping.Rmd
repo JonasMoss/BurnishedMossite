@@ -61,7 +61,7 @@ nature is the a big reason why people care about sequential testing.
 
 So let's say I have an $n$ denoting the maximal number of participants, a 
 sequence of test statistics $T_{n}$, a p-value $\alpha$ 
-(typically equal to $0.05$) anda sequence of cut-off values $c_{\alpha}(n)$. My
+(typically equal to $0.05$) and a sequence of cut-off values $c_{\alpha}(n)$. My
 two questions are then:
 
 1. What is the $k_{n}$ so that the probability of observing a streak of $k$ 
