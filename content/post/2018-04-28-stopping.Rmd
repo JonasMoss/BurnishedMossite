@@ -1,5 +1,5 @@
 ---
-title: "Optional stopping can't be fixed by adding streaks"
+title: "Optional stopping, streaks, and champagne"
 author: "Jonas Moss"
 date: '2018-04-28'
 slug: optional-stopping-streaks
@@ -47,13 +47,13 @@ Notice that Ben's problem can be understood in two ways:
 
 1. *Scenario A*: The researcher decides in advance to collect at most 
    $n$ samples. If she observes a streak in this sample, she pops the champagne. 
-   If she doesn't observe a streak during the $n$ first samples,  but  her last 
-   computed test statistic is significant, she contiues to sample for at 
-   most $k-1$ steps ($k = 20$ in Ben's example). If she obtains a significant 
-   streak in this samples, she pops the champagne.
+   If she doesn't observe a streak during the $n$ first samples, but  her last 
+   computed test statistic is significant, she changes her mind and continues
+   to sample for at most $k-1$ steps more ($k = 20$ in Ben's example). If she 
+   obtains a significant streak in this extended sample, she pops the champagne.
 2. *Scenario B*: The same thing, expect she will never sample more than $n$ 
    participants.
-   
+
 Scenario A is the most plausible one. This is because scenario B makes it  
 possible to  observe a $k-1$-streak in the original sample which the researcher 
 wouldn't be allowed to attempt to extend to a $k$-streak. And problems of this 
@@ -61,8 +61,8 @@ nature is the a big reason why people care about sequential testing.
 
 So let's say I have an $n$ denoting the maximal number of participants, a 
 sequence of test statistics $T_{n}$, a p-value $\alpha$ 
-(typically equal to $0.05$) and a sequence of cut-off values $c_{\alpha}(n)$. My
-two questions are then:
+(typically equal to $0.05$) and a sequence of cut-off values $c_{\alpha}(n)$ 
+dependent on $\alpha$. My two questions are then:
 
 1. What is the $k_{n}$ so that the probability of observing a streak of $k$ 
    consecutive test statistics $T_{i} > c_{\alpha}(i)$ is less than or equal to
@@ -132,7 +132,8 @@ some weak non-linearity at the start of the function $k_{n}$.
 
 ### Third graph: Probability of rejecting the null
 Finally, here's a graph of the probability of rejecting the null for different 
-values of $k$. I've taken $n = 100$ here and
+values of $k$. I've taken $n = 100$ here. $H_{0}$ is still true, and we want 
+to find the true $\alpha$ for each $k$.
 
 ```{r probability-plot, echo = FALSE}
 plot(x, y, xlab = "n", ylab = "Propobability of rejection", type = "l", lwd = 2,
@@ -241,6 +242,7 @@ ks = sapply(ns, function(n) {
 })
 ```
 
-## Some comments
+## Comments on the code
 The source code for this document, written in `bookdown`, is available at 
-[Github](https://github.com/JonasMoss/BurnishedMossite). An `R` file reproducing the plots is [here](https://gist.github.com/JonasMoss/8f8e74fc675cc332f5e949862c909f03).
+[Github](https://github.com/JonasMoss/BurnishedMossite). An `R` file reproducing 
+the plots is [here](https://gist.github.com/JonasMoss/8f8e74fc675cc332f5e949862c909f03).
