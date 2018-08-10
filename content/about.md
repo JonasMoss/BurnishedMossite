@@ -1,10 +1,10 @@
 ---
 title: "About"
-date: "2018-04-28"
+date: "2018-08-10"
 ---
 
 I'm Jonas Moss, a statistics PhD student at the 
-[University of Oslo](http://www.mn.uio.no/math/english/). I have two
+[University of Oslo](http://www.mn.uio.no/math/english/). I have three
 kids, two cats, and one wife. I'm interested in `R` programming, 
 the replication crisis in psychology, theoretical statistics,
 [effective altruism](www.centreforeffectivealtruism.org),
