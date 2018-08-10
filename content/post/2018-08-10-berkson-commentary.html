@@ -1,0 +1,73 @@
+---
+title: "A commentary on 'Tests of Significance Considered as Evidence' (1942) by Joseph Berkson"
+author: "Jonas Moss"
+date: '2018-08-10'
+slug: berkson-commentary
+tags:
+- commentary
+- philosophy
+categories:
+- statistics
+---
+
+
+
+<p><a href="https://www.jstor.org/stable/pdf/2279000.pdf">This paper</a> is old, and it shows! He starts of with the following:</p>
+<blockquote>
+<p>There was a time when we did not talk about tests of significance; we simply did them. We tested whether certain quantities we significant in the light of their standard errors, without inquiring as to just what was involved in the procedure, or attempting to generalize it.</p>
+</blockquote>
+<p>Sounds like the golden age of statistics! But the twilight of that age had long passed, for when he wrote this paper, statistics “consists almost entirely of tests of significance”. Everything happened so fast at the beginning of the 20th century!</p>
+<p>This paper is an unusually pleasant read. His prose is clear and his style is crisp. So don’t worry about fluffy prose in the style of Ludwig von Mises or Friedrich von Hayek.</p>
+<p>So, what’s it about? It’s about tests of significance, and he doesn’t like ’em. For on page two he says, about the meaning of significance testing:</p>
+<blockquote>
+<p>[…] If the experience at hand would occur only very infrequently in a given hypothesis, the hypothesis is considered disproved. The argument has an apparent plausibility and for many years I adhered to it.</p>
+</blockquote>
+<p>“Whereas I was blind,”</p>
+<blockquote>
+<p>However, set against experience with actual problems, reflection has led me to the conclusion that it is erroneous, and that a reevaluation will lead to clearer comprehension in the application of tests of significance and also serve as a corrective of some of its misuses.</p>
+</blockquote>
+<p>… &quot; now I see.&quot;</p>
+<div id="human-albinos" class="section level2">
+<h2>Human albinos</h2>
+<p>So what’s his beef with significance testing?</p>
+<blockquote>
+<p>In the first place, the argument seems to be basically illogical. Con sider it in symbolic form. It says “If A is true, B will happen some times; therefore if B has been found to happen, A can be considered proved.” There is no logical warrant for considering an event known to occur in a given hypothesis, even if infrequently, as disproving the hypothesis.</p>
+</blockquote>
+<p>This is true. And I think it’s a good point. Though it is well-appreciated now, at least among statisticians. He has an example of this:</p>
+<blockquote>
+<p>Suppose I said, “Albinos are very rare in human populations, only one in fifty thousand. Therefore, if you have taken a random sample of 100 from a population and found in it an albino, the population is not human.”</p>
+</blockquote>
+<p>This is a good one. First, it doesn’t have the abstract form of a typical statistics example. Second, it involves albinos! (Although he should’ve talked about peacocks and <a href="https://i.ytimg.com/vi/WI4NQ9mem-k/maxresdefault.jpg">albino peacocks</a> instead.) Third, it shows how bad it is to neglect alternatives. If the family of possible populations are, say, the family of all animal species, I suppose the rate of albinism would not be comparatively high among humans. And it’s silly to reject a hypothesis if none of the alternatives are better able to account for it.</p>
+<p>Of course, Neyman and Pearson placed much emphasis on alternatives, as does modern testing theory. But Fisher wanted to avoid explicit alternatives, from what I’ve read. But at least in some cases, such as <em>t</em>-test, the alternative is implicitly given. Here’s a quote of Barnard, in a comment to Johnstone’s <a href="https://www.jstor.org/stable/2987965">Tests of significance in theory and practice</a>, p. 500:</p>
+<blockquote>
+<p>With Student’s test, for example, the null hypothesis is, that the observations are independent and normally distributed with zero mean. The alternatives are any possibilities which would tend to make the sample mean large in relation to the sample standard deviation. The distribution could be non-normal, with non-zero mean; or the observations could fail to be independent. Indefiniteness of the precise alternatives is part of the logical set-up. Neyman and Pearson showed that if the alternatives are restricted to independence and normality, then the t-test is uniquely optimal, in their sense-a result closely related to Fisher’s earlier demonstration that, in the normal independent family, the pair (x,s,) is minimally sufficient for the parameters.</p>
+</blockquote>
+<p>Barnard, in the same paper, also claims that Fisher wasn’t against alternatives in general, just parameterized alternatives. To that I can only say “meh”. Statistics is about making your methods formal and precise. This isn’t just important because we want good methods, but it is <em>honest</em>, and allows people to criticise your arguments. When your argument is a diffuse “alternatives must be considered”, with no mention of how to do that, criticism becomes too hard. But it fits into my impression of Fisher as a (brilliant, of course) man who prefered to bolster his claims by appeal to personal authority. I mean, why do we need a <em>method</em> to find good tests / <em>p</em>-values when we have Fisher to guide us?</p>
+</div>
+<div id="drosophila" class="section level2">
+<h2><em>Drosophila</em></h2>
+<p>On p. 328 he takes an example directly from Fisher. It’s about testing linearity in a one-variable regression model. I’ve never seen such a test before, so I’m a little uncomfortable commenting it. But the gist of the matter is that Fisher rejected linearity for a <em>Drosophila</em> data set, Berkson plots it and shows that it is linear (It is! Look at the plot.), and claims that the test rejected the null-hypothesis <em>due to heteroskedasticity, not non-linearity</em>. This is another good example! When you calculate a <em>p</em>-value under the any assumption it can, without any further guarantees, reject the nullmodel due to any kind of discrepancy. For instance, when <span class="math inline">\(H_0\)</span> is the product of <span class="math inline">\(n\)</span> standard normals, rejecting when the absolute value of <span class="math inline">\(\sqrt{n}\overline{X}\)</span> is less <span class="math inline">\(0.0627\)</span> is a valid test of the normal distribution with <span class="math inline">\(\alpha = 0.05\)</span>, but with an <em>unusual</em> alternative. If you pretend you test that the mean is unequal to <span class="math inline">\(0\)</span> when using this test, you are likely to fail — you’re finding something else, something more like a test of the standard deviation being less than <span class="math inline">\(1\)</span>. Likewise, when you test for non-linearity, you want to test for that only, not something else. This sounds like a hard problem though. I don’t know if anyone have attempted to solve it.</p>
+<div class="figure">
+<img src="https://lh3.googleusercontent.com/A4fWO3Gep6banRV8DEjWZyQk145Xr99P_c0TzsnSOit-2Gk4SQ4N-MnlPW8r7u4-Lszh2D1WbvfB" alt="Fisher’s non-linear regression line" />
+<p class="caption">Fisher’s non-linear regression line</p>
+</div>
+<p>So what’s his proposal? Take this quote on p. 329:</p>
+<blockquote>
+<p>According to what is advocated here, we cannot lay down any pat axiomatic rules such as “A very small P disproves the hypothesis tested,” or “Equally, a very high P disproves the hypothesis,” for it is not primarily the infrequency of the P which gives the finding its meaning. Each test will have to be examined and the circumstances in which it is applied will have to be examined, to find out, as best we can, whether any particular regions of P will occur relatively frequently in the case of an alternative to the tested hypothesis. There are situations in which a very large P will be frequent in an alternative, and in these circumstances, but only in these circumstances, a very high P can be said to disfavor the null hypothesis.</p>
+</blockquote>
+<p>Let’s take a model <span class="math inline">\(P\)</span> and a <em>p</em>-value <span class="math inline">\(p\)</span>. If <span class="math inline">\(p\)</span> is small enough to warrant rejection, recalculate it under the alternative model to see if it has a reasonable high probability there. Huh! I like this proposal!</p>
+<p>He has a good example here as well, which is related to my comment about the unusual test for the normal above. The <em>p</em>-value corresponding to this test is <span class="math inline">\(\Phi_{[0,\infty)}(\sqrt{n}|\bar{X}|)\)</span>. You can reasonable think of this <em>p</em>-value as the <em>dual</em> of the usual <em>p</em>-value <span class="math inline">\(1 - \Phi_{[0,\infty)}(\sqrt{n}|\bar{X}|)\)</span>. The interesting thing about these two <em>p</em>-values is that if one is high, the other is low. Say I observe <span class="math inline">\(1 - \Phi_{[0,\infty)}(\sqrt{n}|\bar{X}|) = 0.9997\)</span> and think “this distribution is really, <em>really</em> normal!”, you will come and say “Uh, no, it’s not normal at all. In fact, my <em>p</em>-value is 0.0003, it’s really, <em>really</em> non-normal!”. It clearly possible to do this with any <em>p</em>-value testing a non-composite hypothesis.</p>
+<p>Back to his example: He wants to test whether some observations are Poisson. As a test statistic, he takes <span class="math inline">\(n\frac{s^2}{\overline{x}}\)</span>, which is distributed as <span class="math inline">\(\chi^2(n)\)</span> when the Poisson model is the true model. What does this statistic measure? Dispersion! Usually we would test against <em>overdispersion</em>, so that a large <span class="math inline">\(\chi^2(n)\)</span>-value gives reason to reject the hypothesis. But the dual <em>p</em>-value tests for <em>underdispersion</em>, which can obviously happen. And we get the same situation as above: Both <span class="math inline">\(1-p\)</span> and <span class="math inline">\(p\)</span> are <em>p</em>-values, and we need some understanding of what the alternative is in order to differenatiate between them.</p>
+<p>But what happens if you don’t know this, if you listen to someone who says: “Use this test to test for Poissonity!” You do it, expecting it to find any deviation from Poissonity, especially your deviation of underdispersion. But it won’t ever find that! Anyway, the <em>p</em>-value is <span class="math inline">\(0.0001\)</span>, you reject the Poisson and go with your underdispersed Poisson instead. Maybe this is a bad example, but the point still stands. A way to avoid such problems it is to calculate the same <em>p</em>-value under your proposed alternative. If it is too low (or too high?), reject the alternative as well. But an even better method is follow Neyman and explicitly state your alternative from the start, then develop a test tailored to your specific problem.</p>
+<p>He goes on to talk about what you can conclude when the <em>p</em>-value in the midrange, say <span class="math inline">\([0.3,0.7]\)</span>. It’s common practice among statistics teacher to say that you never can accept a nullhypothesis, only reject it. Berkson thinks it’s okay to accept it though, and points out that his contemporaries did this all the time! He mentions Student as one of these. Student did a goodness-of-fit test on his purpotedly Poisson data, got a moderate <em>p</em>-value, and concluded that Poisson is okay. People do this all the time, especially in economy, where testing for normality and unit roots is the order of the day. Is it okay to do this? I guess it is, provided you have a good reason to assume Poisson or unit roots at the outset.</p>
+<p>But might lose something when you interpret middle-<em>p</em>s as supporting the nullhypothesis:</p>
+<blockquote>
+<p>Here we have disclosed one fundamental weakness in the position of those who contend that small samples can be effectively utilized in statistical investigations if the calculations of the P’s are correctly made. If it were a fact that conclusions are drawn only when the P is very small and the null hypothesis disproved, then so far as concerns the main considerations here developed, there would be a certain validity to this view, for small P’s are more or less independent, in the weight of the evidence they afford, of the numbers in the sample. But if actually it is the fact that conclusions will be drawn from P’s which are not small, then only very considerable numbers in the sample are reliable.</p>
+</blockquote>
+<p>He means that a middle <em>p</em>-value could reasonably be created by the true alternative when <span class="math inline">\(n\)</span> is small, but not when it is large. Curiously, he doesn’t mention power. Perhaps he wasn’t aware of Neyman-Pearson. At least he didn’t cite them. I would like to add that you should adjust interpretation of what constitutes a small <em>p</em>-value together with <span class="math inline">\(n\)</span>. Let it be proportional to <span class="math inline">\(n^{-\frac{1}{2}}\)</span> This will make your interpretation more approximately Bayesian.</p>
+</div>
+<div id="verdict" class="section level1">
+<h1>Verdict</h1>
+<p>Most of this paper is an informal defense of an informal Neyman-Pearson-ish way of looking at statistics, without any reference to the Neyman-Pearson concepts. For instance, he accepts nullhypotheses, but only in the presence of sufficient power, he wants us to think about alternatives, and he rejects <em>p</em>-values as a measure of evidence.</p>
+<p>This paper is well written, has good points, and is a light reading. It’s bedtime reading! I recommend it.</p>
+</div>
