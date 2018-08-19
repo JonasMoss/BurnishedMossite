@@ -1,0 +1,83 @@
+---
+title: "Commentary on Synthese (1977) Part I: Neyman's Paper"
+author: "Jonas Moss"
+date: '2018-08-19'
+slug: synthese-neyman-1977
+tags:
+- commentary
+- frequentism
+- philosophy
+categories:
+- statistics
+---
+*Synthese* is a generalist philosophy journal. It's usually ranked among the [20 best](http://leiterreports.typepad.com/blog/2015/09/the-top-20-general-philosophy-journals-2015.html), usually at the lower end. At least some of its focus is on themes I care about, including decision theory, [interpretations of probability](https://link.springer.com/content/pdf/10.1007/s11229-006-9138-5.pdf), probability paradoxes such as the [Sleeping Beauty problem](https://en.wikipedia.org/wiki/Sleeping_Beauty_problem), and, of course, the philosophy of statistics. 
+
+And the [first issue of the 36th volume of Synthese](https://link.springer.com/journal/11229/36/1/page/1) was devoted to the philosophy of statistics. The occasion was Allan Birnbaum's passing the year before, and the issue is built around his last submission to the journal. The issue contains nine articles, so there's a lot to comment. 
+
+I'll start with Neyman's paper, [Frequentist probability and frequentist statistics].(https://link.springer.com/article/10.1007/BF00485695)
+
+## Frequentist probability and frequentist statistics
+This paper is mostly a lightweight introduction to Neyman's main ideas: Hypothesis testing and confidence intervals. As such, there isn't much new here. It's well-written and easy to read. Read it to fill up your yearly quota of classics!
+
+### Inductive Behavior
+Neyman insists on using the term *inductive behavior* in favor of *inductive inference*. But this is only because he doesn't want his understanding of statistics to be confused with that of Fisher. 
+
+> Incidentally, the early term I introduced to designate the process of adjusting our actions to observations is 'inductive behavior'. It was meant to contrast with the term 'inductive reasoning' which R. A. Fisher used in connection with his 'new measure of confidence or diffidence' represented by the likelihood function and with 'fiducial argument'. Both these concepts or principles are foreign to me.
+
+So what is the difference between Fisher and Neyman here? He doesn't define what he means by inductive behavior in this paper, so I can't be too sure. But I think it has to with the fact that Neyman's apparatus is about controlling errors before the data are seen, while Fisher is more Bayesian in his outlook, wishing to draw the best inference after the data is observed. 
+
+### Interpretation of Hypothesis Tests
+Say you have an exact hypothesis test with test statistic $T$ and threshold $\alpha>0$. How do you interpret this? I'm very happy with "the probability of rejecting the nullypothesis when it is true is  $0.05$". Easy as pie. But some people, perhaps even many people, and Neyman among them, insist at stating easy-to-understand probability statements in term of long run relative frequencies instead!
+
+> As emphasized above, the theory was born and constructed with the view of diminishing the relative frequency of errors, particularly of'important' errors.
+
+One way to explain this emphasis is to look at Neyman's philosophy of probability, which is frequentist in the spirit of von Mises. Still, I don't like the statement of motivation. The 'real' motivation is to control the *probability* of error --- relative frequencies follow either from the law of large numbers or a frequenist theory of probability. 
+
+This emphasis on interpretation of frequentist tests (a *statistical* concept) through frequentist probability (a *philosophical* concept) is far to common, even in first courses in statistics. 
+
+It's not easy to understand how to interpret collections of hypothesis tests when we insist on using frequentists ideas of probability, which is evident from the following:
+
+> [...] at a variety of conferences with 'substantive scholars' (biologists, meteorologists, etc.), accompanied by their cooperating 'applied statisticians', I frequently hear a particular regrettable remark. This is to the effect that the frequency interpretation of either the level of significance ot or of power is only possible when one deals many times WITH THE SAME   HYPOTHESIS H, TESTED AGAINST THE SAME ALTERNATIVE. Assertions of this kind, frequently made in terms of 'repeated sampling from the same population', reflect the lack of familiarity with the central limit theorem
+
+I've heard similar remarks, and I think they are mistaken. Still, what's up with the central limit theorem? This sounds like the domain of the law of large numbers to me!
+
+Stating the long run properties of frequentists testing (at least together with power) is a hassle:
+
+>Eventually, then, with each situation $S_i$ there will be connected a pair of numbers, $\alpha_i$ and $\beta(H_i \mid \alpha_i)$. The question is: what can one expect from the use of the theory of testing statistical hypotheses in the above heterogeneous sequence of situations summarizing human experimence in 'pluralistic' studies of Nature? The answer is: 
+>> The relative frequency of first kind errors will be close to the arithmetic mean of numbers $\alpha_1, \alpha_2, ... ,\alpha_n, ...$ adopted by particular research workers as 'acceptably low' probabilities of the more important errors to avoid. Also, the relative frequency of detecting the falsehood of the hypotheses tested, when false, and the contemplated simple alternatives happen to be true, will differ but little from the average of $\beta(H_1 \mid \alpha_1), \beta(H_2 \mid \alpha_2), ..., \beta(H_2 \mid \alpha_2), ...$.
+
+I think Neyman is right here, but we need some assumptions on the generating process of $\alpha$s and $\beta$s to make this work. For instance, we could assume they are exchangeable.
+
+Still, my point is that all of this doesn't matter. You only need to talk about isolated probabilities --- that's enough. You don't need a fancy interpretation of the claim $P_1(T \in S_a)=0.1$, where $S_a$ is an acceptance set and $P_1$ an alternative hypothesis. If you're a hardcore frequentist probabilist, you are required to conjure up a fantastical collective to make sense out of probability statements. But you are not required if you're a propensity theorist. Or a subjectivist. By the way, the frequentists theory of probability is firmly discredited. The best source of arguments against this theory is Hajek's [*Fifteen Arguments Against Hypothetical Frequentism*](https://link.springer.com/article/10.1007/s10670-009-9154-1).
+
+I can think of a reason why it's reasonable to tie frequentist probability and statistics together. It's because Bayesian statistics makes little sense from a frequentist probabilists' point of view. In this way, you're forced to leave Bayesianism if you think frequentism is true. 
+
+Yet, the two senses of frequentism are logically distinct. At the very least you can be a [propensity theorist](https://scholar.google.no/scholar?cluster=9199673684848457080&hl=no&as_sdt=0,5) while preaching frequentist statistics, but you can logically be a radical subjectivst too. 
+
+### Intersection of Confidence Intervals
+There are always more than one way to construct confidence intervals. Let $P_\theta$ be a model indexed by $\theta \in \Theta$  and let assume method 1 gives the confidence interval $[1,3]$ while method 2 gives $[2,4]$, both for $\theta$. If you don't have any clear preference for method 1 over method 2, which confidence interval do you trust? Neyman says:
+
+> As to the difference between two assertions exemplified in [the example above] I have seen occasions in which such differences did occur and where the practical conclusion was reached that the unknown $\theta$ must be included in the common part of the two intervals, namely $[2, 3]$. At the time when this conclusion was reached, there was no theoretical basis supporting it and I am not sure whether it exists now. (p. 119)
+
+Call the confidence intervals $C_1(X)$ and $C_2(X)$, and assume both have coverage $1 - \alpha$. Now define $C_\cap (X) = C_1(X) \cap C_2(X)$. Then the coverage of $C_\cap (X)$ is bounded below by $1 - 2\alpha$, and this will be exact when the rejection sets of the first method has an empty intersection with the rejection set of the second method. This means you can go ahead and take the intersection, just be aware that the coverage will decrease to $1 - 2\alpha$. The easiest example is this: Take the two one-sided intervals for a nomal variable at level $0.95$ and intersect them. The result is $[\overline{X} - \frac{1.64}{\sqrt{n}}, \overline{X} + \frac{1.64}{\sqrt{n}}]$, with a coverage of $0.9$ instead of $0.95$. 
+
+Why is this the case? Because the acceptance sets of the intersected intervals are the intersection of the acceptance sets from said intervals. If the rejection sets are disjoint, the probability of the resulting acceptance set is $1 - 2\alpha$. If they aren't disjoint, it must be larger.
+
+The issue of intersection confidence sets leads to a problem. And this problem is that $C_\cap (X)$ is a valid confidence set *even if it sometimes evaluates to $\emptyset$*. This can happen because confidence sets are based on *predata* evaluations: The point is that the probability that the confidence set covers the parameter of interest is $1 - \alpha$ *before* the data is seen. And the existence of empty confidence sets could even be good by some methods of evaluating confidence sets! An empty set has length $0$ after all. 
+
+I believe that empty set is a possible confidence set is one the main problems of frequentist statistics. And it certainly goes counter to the claim that (emphases mine):
+
+> Whenever the observable variables X assume some values $x = (x_1, x_2, ..., x_n)$ we shall calculate the corresponding values of $Y_1$ and $Y_2$, say $Y_1(x)<Y_2(x)$, and then *assert* (or *act on the assumption*) that $Y_1(x)\leq \theta \leq Y_2(x)$. (p. 116)
+
+For how can you act on the assumption that $\theta\in A$ when the $A$ is empty? That's clearly absurd. 
+
+Moreover, Neyman claims that ordinary confidence sets are useful as "tools of inductive behaviour":
+
+> In  order to be useful as tools of *inductive behavior*, the confidence bounds, and the interval I(X) between them, must possess certain well defined frequency properties. (p. 116)
+
+You could add the demand that the set is non-empty to the list check list for attaining confidence setism, but that wouldn't solve the problem. Just take the same intervals and add "something else", such as $\theta = 55$. Such fixes won't work, as the confidence set concept is flawed in itself. It's possible to make *ad hoc* fixes, but claims  such as "you act on the assumption that $\theta\in A$" just can't be true in general.
+
+### On Abraham Wald
+Here is his beautiful homage to Abraham Wald:
+> This term [minimax] was introduced by Abraham Wald, a great talent who perished in an airplane accident in 1950. He unified and generalized all the earlier efforts at developing the mathematical theory of statistics. In fact, the appearance of Wald's works may be considered as marking the 'maturity' of mathematical statistics as an independent mathematical discipline. (p. 105)
+
