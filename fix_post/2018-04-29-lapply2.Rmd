@@ -1,0 +1,149 @@
+---
+title: "Fixing the problems with lapply"
+author: "Jonas Moss"
+date: '2018-04-28'
+slug: lapply2
+tags:
+- R
+categories:
+- programming
+---
+
+The [R](https://www.r-project.org/) language is a functional language. As most 
+functional languages, it has a built-in function to handle the problem of 
+applying a function to each element of a list. Such functions are usually 
+called [*map*](https://en.wikipedia.org/wiki/Map_(higher-order_function)).
+
+In R, *map* is called *lapply*. This article is about three problems with 
+lapply and a method to solve two of them. 
+
+The first problem is already alluded to. The name *lapply* is wrong, the name 
+*map* is right. To make matters worse 'lapply' (and the rest of the functions
+in this family, including *apply*) makes it impossible to rename 'do.call' to 
+its proper name, which is [apply](http://clhs.lisp.se/Body/f_apply.htm). I 
+won't be able to solve this problem, as the apply family is nailed tightly to 
+`R`. But the name is wrong anyhow.
+
+There are two more substantive problems though.
+
+1. lapply doesn't respect side effects,
+2. lapply doesn't preserve the call structure.
+
+# Lapply doesn't respect side effects
+Here's some code and some output.
+```{r lapply-side-effects-good}
+x = 0
+
+f = function(y) {
+  envir = parent.frame()
+  assign("x", x + 1, envir = envir)
+  y + x
+}
+
+list(f(1), f(2), f(3))
+```
+
+So `f` takes an argument `y`, augments `x` by 1 in its parent environment, 
+and returns `x + y`. Easy to understand, and the list contains the expected 
+elements. Now let's do the same with `lapply`:
+
+```{r lapply-side-effects-bad}
+x = 0
+
+lapply(1:3, f)
+```
+
+Curiously, the `lapply` forgets to increase `x` by one each iteration! The 
+explanation for this is pretty simple. When `lapply` is called, it evaluates 
+all the function calls in its own environment. A 'fix' of the problem above is
+to modify `f` in the following way:
+
+```{r lapply-side-effects-better}
+x = 0
+
+f_fix = function(y) {
+  envir = parent.frame(n = 2)
+  assign("x", x + 1, envir = envir)
+  y + x
+}
+
+lapply(1:3, f_fix)
+```
+
+But this is hardly a fix. It's a hack. Moreover, this function won't always work
+when you call `f` repeatedly on a list's elements. Now I embed the `f` functions
+inside `g` functions. According to the definition of `f`, only the `x` inside 
+the environment of `g` should be changed. But `f_fix` doesn't fulfil this 
+requirement.
+ 
+```{r lapply-side-effects-worse}
+x = 0
+
+g = function() {
+  x = 0
+  list(f(1), f(2), f(3))
+}
+
+g_fix = function() {
+  x = 0
+  list(f_fix(1), f_fix(2), f_fix(3))
+}
+
+# Call for side-effects
+tmp = g()
+y = x
+tmp = g_fix()
+print(c(y, x))
+```
+
+That `x` should be 0, not 3. This happens due to our "fix" of `f`, which assigns
+`x` two steps up the frame stack.
+
+## Is this a problem?
+
+Yes, this is a problem. I even guess that plenty of people have encountered this
+problem without being aware of its cause. They would've rewritten the code,
+avoided the `lapply`, and arrived at some code that did what they intended for
+it to do. 
+
+Furthermore, the behaviour can create tiny, opaque bugs that are really 
+difficult to weed out. This is some behaviour we don't want from the basic
+built-ins of a programming language.
+
+## How it should be handled
+
+`lapply` should 
+
+
+Is this possible or reasonable? Yes. Just think about `list`. When list is 
+called with `f(1)` etc., as in `list(f(1), f(2), f(3))`, nothing problematic 
+happens. This is probably because `list` doesn't create its own evaluated 
+environment, so that `x` is updated as it should be. 
+
+# lapply doesn't preserve calls and arguments
+
+```{r preserve-arguments}
+
+
+f = function(x) substitute(x)
+
+x = 1
+y = 2
+z = 3
+
+list(f(x), f(y), f(z))
+lapply(alist(x, y, z), f)
+```
+
+# A solution
+Before I present a solution.
+
+Here is my solution proposal. 
+```{r solution-proposal}
+lapply2 = function(X, FUN, ...) {
+  FUN = substitute(FUN)
+  dots = as.list(substitute((...))[-1])
+  envir = parent.frame()
+  lapply(X, function(x) eval(as.call(c(FUN, x, dots)), envir = envir))
+}
+```

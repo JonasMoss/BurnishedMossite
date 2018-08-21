@@ -1,0 +1,88 @@
+---
+title: "Handling side effects with the .H function"
+author: "Jonas Moss"
+date: '2018-08-21'
+slug: H-function
+tags:
+- R
+categories:
+- programming
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+.H = function(expr) {
+  f = function() {}
+  body(f) = substitute(expr)
+  f()
+}
+```
+
+### The Problem of Side Effects
+When I am writing $\mathtt{R}$ code, I often do stuff in the body of my script that creates undesired side effects. 
+
+```{r, eval = TRUE}
+# n and x constants I wish to use later
+n = 100
+x = pi^2/6
+
+# lots of code
+# ...
+
+# I suddenly wish to plot something
+n = 1:1000
+x = 0.1
+plot(n, pnorm(sqrt(n)*x), type = "l")
+```
+
+Notice that `n` and `x` have been rewritten. So what should I do if I find myself in need of their original values?  Then I will have to hunt down where I've used `n` and `x` in my script and either change the variable names or put the entire paragraph in a function.
+
+It's probably smarter to put it all in a function, as the new variable names (e.g. `n2` and `x2`) could also have important functions in the script. Since I obviously wish my function to be anonymous, my script will look like this:
+```{r, eval = FALSE}
+funtion() {
+  n = 1:1000
+  x = 0.1
+  plot(n, pnorm(sqrt(n)*x)
+}()
+#
+```
+
+This code isn't beautiful at all.  It's also cryptic, as it doesn't convey the *purpose* of the function. 
+
+### The Solution
+To solve this problem I've made the *hide* function:
+
+```{r, eval = FALSE} 
+.H = function(expr) rlang::new_function(alist(), substitute(expr))()
+```
+
+Here "H" is for hide, and the dot in front of it makes the function hidden, which prevents it from cluttering your environment. 
+
+Here's how `.H` works: It creates a function new function and executes it. The argument list of the new function is empty, this is why `alist()` appears. The body of the function is the argument passed to `.H`, that is the purpose of `substitute(expr)`. The package `rlang` is great for these sort of things, but it's easy to write `.H` without it. The following function is equivalent to `.H`:
+
+```{r, eval = FALSE} 
+.H2 = function(expr) {
+  f = function() {}
+  body(f) = substitute(expr)
+  f()
+}
+```
+
+I prefer the version using `rlang` since it is a one-liner.
+
+With this function in hand, I can write
+
+```{r, eval = TRUE}
+.H({
+  n = 1:1000
+  x = 0.1
+  plot(n, pnorm(sqrt(n)*x), type = "l")
+})
+```
+
+### Conclusion
+With the function `.H` I have reached my following three goals:
+
+1. Plotting without side effects,
+2. relatively pretty code,
+3. code that is easy to understand, as `.H` is only used to avoid side effects of code that would usually be found in the body of the script.

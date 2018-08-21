@@ -6,10 +6,20 @@
     <description>Recent content in R on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 21 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Handling side effects with the .H function</title>
+      <link>/2018/08/h-function/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/08/h-function/</guid>
+      <description>The Problem of Side EffectsWhen I am writing \(\mathtt{R}\) code, I often do stuff in the body of my script that creates undesired side effects.
+# n and x constants I wish to use latern = 100x = pi^2/6# lots of code# ...# I suddenly wish to plot somethingn = 1:1000x = 0.1plot(n, pnorm(sqrt(n)*x), type = &amp;quot;l&amp;quot;)Notice that n and x have been rewritten.</description>
+    </item>
     
     <item>
       <title>Optional stopping, streaks, and champagne</title>

@@ -1,0 +1,17 @@
+---
+title: "Problems with the p-curve estimator"
+author: "Jonas Moss"
+date: '2018-05-07'
+slug: p-curve-problems
+tags:
+- psychological methods
+- meta-analysis
+- p-hacking
+categories:
+- science
+- statistics
+---
+
+### Heterogeneity
+Recall the definition of the estimating p-curve
+

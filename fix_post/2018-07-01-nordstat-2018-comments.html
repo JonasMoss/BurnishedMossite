@@ -1,0 +1,70 @@
+---
+title: "Comments on Nordstat 2018"
+author: "Jonas Moss"
+date: '2018-07-01'
+slug: nordstat-2018-comments
+categories:
+- statistics
+---
+
+
+
+<div id="van-der-vaarts-talk" class="section level2">
+<h2>van der Vaart’s talk</h2>
+<p>van der Vaart’s talk was the highlight of the conference.</p>
+</div>
+<div id="frechet-means-and-smearyness" class="section level2">
+<h2>Fréchet means and smearyness</h2>
+<p>I don’t use partial function application enough. Say that I want to plot four different curves in the same window. The curves will be defined by <code>f(x)</code> for some <code>f</code>, and most of them will share the <code>x</code>.</p>
+<pre class="r"><code>x = seq(-1, 5, by = 0.01)
+y = seq(-1, 2, by = 0.01)
+plot(x, dnorm(x, mean = 1, sd = 2), type = &quot;l&quot;)
+lines(x, dnorm(x, mean = 1, sd = 1))
+lines(x, dnorm(x, mean = 2, sd = 2))
+points(y, dnorm(y, mean = 1, sd = 2))</code></pre>
+<p><img src="/post/2018-07-01-nordstat-2018-comments_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>But I’m not done rigth away. I want to add options, such as <code>lty</code>, <code>lwd</code>, <code>col</code> and <code>bty</code> to these functions. What’s more, I’ll most likely use some time experimenting to find the best options for <code>x</code>, <code>y</code> and all these parameters. Moreover, if I’m wrong about <code>sd = 2</code>, so that <code>sd = 3</code> holds instead, I must change every single <code>sd = 2</code> option.</p>
+<p>Wouldn’t it be nice to have a simple function to take care of these things? What if you could write, say,</p>
+<pre class="r"><code>x = seq(-1, 5, by = 0.01)
+dnorm2 = Q(dnorm(x = x, mean = 1, sd = 2))</code></pre>
+<p>to obtain a new dnorm that behaves exactly the same as if the original <code>dnorm</code> in the <code>stats</code> package was defined with these default arguments? With the unreferced arguments, in this case <code>log = TRUE</code>, untouched?</p>
+</div>
+<div id="defintion-of-the-function" class="section level2">
+<h2>Defintion of the function</h2>
+<p>Here’s the function definition. It’s without error handling, as it makes it easier to read. For a better function error-handling, see this gist. The gist function includes some more options as well.</p>
+<pre class="r"><code>Q = function(call, quote = TRUE) {
+
+  call   = if(quote) substitute(expr = call) else call
+  name   = deparse(expr = call[[1]])
+  object = match.fun(FUN = name)
+  args   = lapply(X = as.list(match.call(object, call)[-1]), 
+                  FUN = eval, 
+                  envir = parent.frame(n = 3))
+
+  for(arg in names(args)) formals(object)[[arg]] = args[[arg]]
+  object
+}</code></pre>
+<p>So what does this function do? First it identifies the function name from the supplied call (in <code>deparse(call[[1]])</code>) and fetches the function object associated with the call. Then it evaluates all the supplied arguments in the calling environment, matches them to the formals of the associated function object, and returns a copy of the associated function object with the formals changed.</p>
+</div>
+<div id="when-default-arguments-are-silly" class="section level2">
+<h2>When default arguments are silly</h2>
+<div id="histograms" class="section level3">
+<h3>Histograms</h3>
+<p>The default arguments in the histogram function <code>graphics::hist</code> are silly. First, it default to show a histogram with frequency counts on the y-axis, something I never want. The histogram is a density estimator (even a universally consisten one), and I want it to show a density. Hence <code>freq = FALSE</code> is the sensible default argument. Second, the default choice of bin counts (“Sturges”) is horrible, and is well known to be horrible. It uses far too few bins. I would have prefered a methods based on AIC, but it’s not implemented, so I’ll go with Freedman-Diaconis, or the option <code>breaks = &quot;FD&quot;</code>. Since <code>hist</code> is an S3-generic, I will have to manipulate the <code>default</code> option. Thus I redefine the hist.default to:</p>
+<pre class="r"><code>hist.default = Q(hist.default(freq = FALSE, breaks = &quot;FD&quot;))</code></pre>
+<p>(<em>Note:</em> This kind of practice isn’t dangerous, and can’t break code in other packages, as the generic is redefined in your current workspace. It can make it harder to copy-paste isolated parts of code, but that’s very often a problem anyway.)</p>
+</div>
+<div id="plotting" class="section level3">
+<h3>Plotting</h3>
+<p>When I plot something, I usually want the plot to be a line plot.</p>
+<pre class="r"><code>plot.default = Q(plot.default(type = &quot;l&quot;))</code></pre>
+<p>Changing plotting parameters in this way is not very easy though, as <code>Q</code> can’t work its way around <code>...</code> arguments. This creates problems when the function you manipulate doesn’t have your desired parameter as an argument, but rather in <code>...</code>. An example of this is the <code>bty</code> parameter in <code>plot</code> (I always change this to <code>&quot;l&quot;</code>). These problems reduce the usefulness of the Q function.</p>
+</div>
+<div id="using-lapply" class="section level3">
+<h3>Using <code>lapply</code></h3>
+<p>One of the main uses of partial function application lies in the use of <code>lapply</code>. Here’s an example,</p>
+</div>
+</div>
+<div id="problems-and-issues" class="section level2">
+<h2>Problems and issues</h2>
+</div>

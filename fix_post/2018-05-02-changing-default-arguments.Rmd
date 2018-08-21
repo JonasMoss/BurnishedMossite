@@ -1,0 +1,137 @@
+---
+title: "Changing default arguments of functions"
+author: "Jonas Moss"
+date: '2018-05-04'
+slug: changing-default-arguments
+tags:
+- R
+categories:
+- programming
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+Q = function(call, quote = TRUE, .force = TRUE, .enclos = NULL) {
+
+  call = if(quote) substitute(call) else call
+  name = deparse(call[[1]])
+  object = getFunction(name)
+
+  if(!is.null(.enclos)) environment(object) = .enclos
+
+  args = as.list(match.call(object, call)[-1])
+
+  if(.force) args = lapply(args, eval, envir = parent.frame(n = 3))
+
+  for(arg in names(args)) formals(object)[[arg]] = args[[arg]]
+
+  if(!is.null(.enclos)) environment(object) = .enclos
+
+  object
+}
+```
+
+I don't use partial function application enough. Say that I want to plot four
+different curves in the same window. The curves will be defined by `f(x)` for 
+some `f`, and most of them will share the `x`.
+
+```{r}
+x = seq(-1, 5, by = 0.01)
+y = seq(-1, 2, by = 0.01)
+plot(x, dnorm(x, mean = 1, sd = 2), type = "l")
+lines(x, dnorm(x, mean = 1, sd = 1))
+lines(x, dnorm(x, mean = 2, sd = 2))
+points(y, dnorm(y, mean = 1, sd = 2))
+```
+
+But I'm not done rigth away. I want to add options, such as `lty`, `lwd`, `col`
+and `bty` to these functions. What's more, I'll most likely use some time 
+experimenting to find the best options for `x`, `y` and all these parameters.
+Moreover, if I'm wrong about `sd = 2`, so that `sd = 3` holds instead, I must 
+change every single `sd = 2` option.
+
+Wouldn't it be nice to have a simple function to take care of these things? 
+What if you could write, say,
+
+```{r, eval = FALSE}
+x = seq(-1, 5, by = 0.01)
+dnorm2 = Q(dnorm(x = x, mean = 1, sd = 2))
+```
+
+to obtain a new dnorm that behaves exactly the same as if the original `dnorm`
+in the `stats` package was defined with these default arguments? With the 
+unreferced arguments, in this case `log = TRUE`, untouched?
+
+## Defintion of the function
+
+Here's the function definition. It's without error handling, as it makes it
+easier to read. For a better function error-handling, see this gist. The gist
+function includes some more options as well. 
+
+```{r, eval = FALSE}
+Q = function(call, quote = TRUE) {
+
+  call   = if(quote) substitute(expr = call) else call
+  name   = deparse(expr = call[[1]])
+  object = match.fun(FUN = name)
+  args   = lapply(X = as.list(match.call(object, call)[-1]), 
+                  FUN = eval, 
+                  envir = parent.frame(n = 3))
+
+  for(arg in names(args)) formals(object)[[arg]] = args[[arg]]
+  object
+}
+```
+
+So what does this function do? First it identifies the function name from the 
+supplied call (in `deparse(call[[1]])`) and fetches the function object 
+associated with the call. Then it evaluates all the supplied arguments in the 
+calling environment, matches them to the formals of the associated function 
+object, and returns a copy of the associated function object with the formals 
+changed.
+
+
+
+## When default arguments are silly 
+
+### Histograms
+The default arguments in the histogram function `graphics::hist` are silly. 
+First, it default to show a histogram with frequency counts on the y-axis, 
+something I never want. The histogram is a density estimator (even a 
+universally consisten one), and I want it to show a density. 
+Hence `freq = FALSE` is the sensible default argument. Second, the default
+choice of bin counts ("Sturges") is horrible, and is well known to be horrible. 
+It uses far too few bins. I would have prefered a methods based on AIC, but it's
+not implemented, so I'll go with Freedman-Diaconis, or the option 
+`breaks = "FD"`. Since `hist` is an S3-generic, I will have to manipulate the 
+`default` option. Thus I redefine the hist.default to:
+
+```{r}
+hist.default = Q(hist.default(freq = FALSE, breaks = "FD"))
+``` 
+
+(*Note:* This kind of practice isn't dangerous, and can't break code in other 
+packages, as the generic is redefined in your current workspace. It can make 
+it harder to copy-paste isolated parts of code, but that's very often a 
+problem anyway.)
+
+### Plotting
+When I plot something, I usually want the plot to be a line plot.  
+
+```{r}
+plot.default = Q(plot.default(type = "l"))
+``` 
+
+Changing plotting parameters in this way is not very easy though, as `Q` can't 
+work its way around `...` arguments. This creates problems when the function
+you manipulate doesn't have your desired parameter as an argument, but rather in
+`...`. An example of this is the `bty` parameter in `plot` (I always change this
+to `"l"`). These problems reduce the usefulness of the Q function. 
+
+### Using `lapply`
+One of the main uses of partial function application lies in the use of `lapply`.
+Here's an example,
+
+## Problems and issues
+

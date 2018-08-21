@@ -1,0 +1,140 @@
+---
+title: "Fixing the problems with lapply"
+author: "Jonas Moss"
+date: '2018-04-28'
+slug: lapply2
+tags:
+- R
+categories:
+- programming
+---
+
+
+
+<p>The <a href="https://www.r-project.org/">R</a> language is a functional language. As most functional languages, it has a built-in function to handle the problem of applying a function to each element of a list. Such functions are usually called <a href="https://en.wikipedia.org/wiki/Map_(higher-order_function)"><em>map</em></a>.</p>
+<p>In R, <em>map</em> is called <em>lapply</em>. This article is about three problems with lapply and a method to solve two of them.</p>
+<p>The first problem is already alluded to. The name <em>lapply</em> is wrong, the name <em>map</em> is right. To make matters worse ‘lapply’ (and the rest of the functions in this family, including <em>apply</em>) makes it impossible to rename ‘do.call’ to its proper name, which is <a href="http://clhs.lisp.se/Body/f_apply.htm">apply</a>. I won’t be able to solve this problem, as the apply family is nailed tightly to <code>R</code>. But the name is wrong anyhow.</p>
+<p>There are two more substantive problems though.</p>
+<ol style="list-style-type: decimal">
+<li>lapply doesn’t respect side effects,</li>
+<li>lapply doesn’t preserve the call structure.</li>
+</ol>
+<div id="lapply-doesnt-respect-side-effects" class="section level1">
+<h1>Lapply doesn’t respect side effects</h1>
+<p>Here’s some code and some output.</p>
+<pre class="r"><code>x = 0
+
+f = function(y) {
+  envir = parent.frame()
+  assign(&quot;x&quot;, x + 1, envir = envir)
+  y + x
+}
+
+list(f(1), f(2), f(3))</code></pre>
+<pre><code>## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 6</code></pre>
+<p>So <code>f</code> takes an argument <code>y</code>, augments <code>x</code> by 1 in its parent environment, and returns <code>x + y</code>. Easy to understand, and the list contains the expected elements. Now let’s do the same with <code>lapply</code>:</p>
+<pre class="r"><code>x = 0
+
+lapply(1:3, f)</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] 3</code></pre>
+<p>Curiously, the <code>lapply</code> forgets to increase <code>x</code> by one each iteration! The explanation for this is pretty simple. When <code>lapply</code> is called, it evaluates all the function calls in its own environment. A ‘fix’ of the problem above is to modify <code>f</code> in the following way:</p>
+<pre class="r"><code>x = 0
+
+f_fix = function(y) {
+  envir = parent.frame(n = 2)
+  assign(&quot;x&quot;, x + 1, envir = envir)
+  y + x
+}
+
+lapply(1:3, f_fix)</code></pre>
+<pre><code>## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] 4
+## 
+## [[3]]
+## [1] 6</code></pre>
+<p>But this is hardly a fix. It’s a hack. Moreover, this function won’t always work when you call <code>f</code> repeatedly on a list’s elements. Now I embed the <code>f</code> functions inside <code>g</code> functions. According to the definition of <code>f</code>, only the <code>x</code> inside the environment of <code>g</code> should be changed. But <code>f_fix</code> doesn’t fulfil this requirement.</p>
+<pre class="r"><code>x = 0
+
+g = function() {
+  x = 0
+  list(f(1), f(2), f(3))
+}
+
+g_fix = function() {
+  x = 0
+  list(f_fix(1), f_fix(2), f_fix(3))
+}
+
+# Call for side-effects
+tmp = g()
+y = x
+tmp = g_fix()
+print(c(y, x))</code></pre>
+<pre><code>## [1] 0 3</code></pre>
+<p>That <code>x</code> should be 0, not 3. This happens due to our “fix” of <code>f</code>, which assigns <code>x</code> two steps up the frame stack.</p>
+<div id="is-this-a-problem" class="section level2">
+<h2>Is this a problem?</h2>
+<p>Yes, this is a problem. I even guess that plenty of people have encountered this problem without being aware of its cause. They would’ve rewritten the code, avoided the <code>lapply</code>, and arrived at some code that did what they intended for it to do.</p>
+<p>Furthermore, the behaviour can create tiny, opaque bugs that are really difficult to weed out. This is some behaviour we don’t want from the basic built-ins of a programming language.</p>
+</div>
+<div id="how-it-should-be-handled" class="section level2">
+<h2>How it should be handled</h2>
+<p><code>lapply</code> should</p>
+<p>Is this possible or reasonable? Yes. Just think about <code>list</code>. When list is called with <code>f(1)</code> etc., as in <code>list(f(1), f(2), f(3))</code>, nothing problematic happens. This is probably because <code>list</code> doesn’t create its own evaluated environment, so that <code>x</code> is updated as it should be.</p>
+</div>
+</div>
+<div id="lapply-doesnt-preserve-calls-and-arguments" class="section level1">
+<h1>lapply doesn’t preserve calls and arguments</h1>
+<pre class="r"><code>f = function(x) substitute(x)
+
+x = 1
+y = 2
+z = 3
+
+list(f(x), f(y), f(z))</code></pre>
+<pre><code>## [[1]]
+## x
+## 
+## [[2]]
+## y
+## 
+## [[3]]
+## z</code></pre>
+<pre class="r"><code>lapply(alist(x, y, z), f)</code></pre>
+<pre><code>## [[1]]
+## X[[i]]
+## 
+## [[2]]
+## X[[i]]
+## 
+## [[3]]
+## X[[i]]</code></pre>
+</div>
+<div id="a-solution" class="section level1">
+<h1>A solution</h1>
+<p>Before I present a solution.</p>
+<p>Here is my solution proposal.</p>
+<pre class="r"><code>lapply2 = function(X, FUN, ...) {
+  FUN = substitute(FUN)
+  dots = as.list(substitute((...))[-1])
+  envir = parent.frame()
+  lapply(X, function(x) eval(as.call(c(FUN, x, dots)), envir = envir))
+}</code></pre>
+</div>

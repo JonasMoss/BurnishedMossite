@@ -1,0 +1,114 @@
+---
+title: "A snarky commentary on 'The Earth Is Round (p < .05)' (1994) by Jacob Cohen"
+author: "Jonas Moss"
+date: '2018-08-11'
+slug: cohen-p-value-commentary
+tags:
+- commentary
+- psychological methods
+- philosophy
+categories:
+- statistics
+- science
+---
+
+[This is one](http://cmapspublic2.ihmc.us/rid=1P5020CBD-28FYVQQ-28VH/Cohen_1994_The%20earth%20is%20round%20\(p.pdf) of the most famous and highly cited papers in psychology about how *p*-values and nullhypothesis significance testing (NHST) are bad. And there are *many* of them. And they are so similar! 
+
+How to summarize this more-than-4000-Scholar cites paper? Cohen has roughly two points:
+
+* The *p*-value is *not* equal to $P(H_0 \mid D)$, where $H_0$ is the null-hypothesis and $D$ is the data. Moreover, $P(H_0 \mid D)$ is what we really wish to talk about.
+*  The nullhypothesis of the form $\mu = 0$, as in there is no effect, is almost never true. Hence the reasoning behind most significance tests fail.
+
+I agree with these two points, for the most part. Especially the first one. Of course, you will only disagree with the claim " the *p*-value is not equal to $P(H_0 \mid D)$", if you're ignorant. (Unless $P(H_0)$ has a [very specific form](http://www.biostat.umn.edu/~hodges/HardToFind/Who_knows_1992.pdf).) It's like pointing out that, no, $-(-1)$ isn't $-1$, but actually $1$, just on a slightly more advanced level. But that's not enough for Cohen. He cites at least *five*  sources who have pointed this out before him. Why does he need to cite anyone for a trivial observation? I don't know, but it's symptotic of the entire literature (yes, it's a literature) of anti-NHST in psychology. Citation upon citation upon citation of people stating exactly the same thing, over and over again.
+
+He says, and I think I agree
+> What's wrong with NHST? Well, among many other things, it does not tell us what we want to know, and we so much want to know what we want to know that, out   of desperation, we nevertheless believe that it does! What  we want to know is "Given these data, what is the probability that Ho is true?"
+
+When I read this, I thought something along the lines of "That's great! Let's hear some good arguments for his cause!" But what did I get? Appeals to authority!
+
+> As Bill Rozeboom wrote in 1960, "The primary  aim of a scientific experiment is not to precipitate decisions, but to make an appropriate adjustment in the degree to which one . . . believes the hypothesis . . . being  tested" (p. 420)
+
+Okay? Should I go and read Rozeboom (1960) and hope he gives reasons for his claims then? I don't have any indication that Rozeboom supports his claims, so I'll skip it. 
+
+Don't get me wrong: I think it is important that the *p*-value isn't the posterior probability of the nullhypothesis, and I think that is what we really want. Morover, I strongly believe the *p*-value cannot be taken as a measure of strength of evidence. The main reason I have for this is that it violates the likelihood principle. The best introduciton to the likelihood principle is Berger & Wolpert's [Likelihood Principle](https://www.jstor.org/stable/4355509). Stop reading this blog post and read Berger & Wolpert instead!
+
+Appeals to authority appear throughout Cohen's paper. Or I don't know if that's the name. Cohen is an authority himself. Maybe it's called appeal to "look, people agree with me!"? Here's another one. About the *replication fallacy*, the belief that the *p*-value equals the probabiltiy that a finding will replicate.
+
+> Rosenthal (1993) said with regard to this replication fallacy that "Nothing could be further from the truth" (p. 542)
+ 
+Why does he need this quotation? Again, the replication fallacy is trivially a fallacy. No citation is needed. Adding the platitude "Nothing could be further from the truth" doen't change anything, anything that is false has a maximal distance from the truth. It's intellectual noise to add it. Here's another one:
+
+> One problem arises from a misapplication of deductive syllogistic reasoning. Falk and Greenbaum (in press) called this the "illusion of probabilistic proof by contradiction" or the "illusion of attaining improbability." Gigerenzer (1993) called it the "permanent illusion" and the "Bayesian Id's wishful thinking," part of the "hybrid logic" of contemporary statistical inference—a mishmash of Fisher and Neyman-Pearson, with invalid Bayesian interpretation. It is the widespread belief that the level of significance at which Ho is rejected, say .05, is the probability that it is correct or, at the very least, that it is of  low probability.
+
+Yeah, a lot of people have given a trivial mistake lots of different names. Who cares? Notice the snark in the name "Bayesian Id's wishful thinking". And that's the common denominator of these papers. Snark. Here's a collection of snark of this paper:
+
+## A Collection of Snark & Citations
+Italics are mine.
+
+> And we, as  teachers, consultants, authors, and otherwise perpetrators of quantitative methods, are responsible for the ritualization of null hypothesis significance testing (NHST; I resisted the temptation to call it *statistical hypothesis inference testing*) to the point of meaninglessness and beyond. 
+
+- Hey, where were you?
+- Oh, me? I went to take a statistical hypothesis inference testing.
+- LOL.
+
+> For example, Meehl described NHST as "a potent but sterile intellectual rake who leaves in his merry path a long train of ravished maidens but no viable scientific offspring" (p.  265).
+
+I will surely protect my maiden friends to from the virile NHST! Isn't this supposed to be a scientific paper? I want to read about the issues with NHST, not about poetic denounciations of NHST.
+
+> Like many men my age, I mostly grouse. My harangue today is on testing for statistical significance, about which Bill Rozeboom (1960) wrote 33 years ago, "*The statistical folkways of a more primitive past* continue to dominate the local scene" (p. 417).
+
+So, what, 90% of statisticians spend most / much of their time on is "statistical folkways of a more primitive past"?
+
+>I was at that time well trained in the current *Fisherian dogma* and had not yet heard of Neyman-Pearson (try to find a reference   to them in the statistics texts of that day—McNemar,  Edwards, Guilford, Walker). Indeed, I had already had  some dizzying success as a purveyor of plain and fancy  NHST to my fellow clinicians in the Veterans Administration
+
+I'm happy you were awakened from your dogmatic Fisherian slumber!
+
+And back to the problem of appeal to authority again. One of the problems with significance testing is that the $\mu = 0$-hypothesis is always false, Cohen claims. His first argument is this: 
+
+> My work in power analysis led me to realize that the nil hypothesis is always false. If I may unblushingly quote myself,  
+>> *It can only be true in the bowels ofa computer processor* running a Monte Carlo study (and even then a stray electron may make it false). If it is false, even to a tiny degree, it must be the case that a large enough sample will produce a significant result and lead to its rejection. So if the null hypothesis is always false, what's the big deal about rejecting it? (p. 1308)
+
+Is he really that proud of this citation? It doesn't constitute evidence, it's just a claim, and an infuriatingly poetic one. "The bowels of a computer processor," come on! Now he bolsters his argument with another appeal to authority: 
+
+>[...] in 1938, Berkson wrote  
+>> It would be agreed by statisticians that a large sample is always better than a small sample. If, then, we know in advance the P that will result from an application of the Chi-square test to a large sample, there would seem to be no use in doing it on a  smaller one. But since the result of the former test is known, it is no test at all. (p. 526)
+
+I found that quote pretty funny, but it assumes that the $\mu=0$-hypothesis is always wrong, and isn't Cohen supposed to make a case for that? Then he name drops Tukey! A real authority if there ever was one!
+
+> Tukey (1991) wrote that "It is foolish to ask 'Are the effects of A and B different?' They are always different—for some decimal place" (p. 100).
+
+And ... again! Another appeal to authority!
+
+> The point [refering to the last quote] made piercingly by Thompson (1992): 
+> >Statistical significance testing can involve a tautological logic in which tired researchers, having collected data on hundreds of subjects, then, conduct a statistical test to evaluate whether there were a lot of subjects, which the researchers already know, because they collected the data and know they are tired. This tautology has created considerable damage as regards the cumulation of knowledge, (p. 436)
+
+In Cohen's defense, he lines up some real arguments after he's done with the name drops. Read the paper to find them!
+
+And here is yet another appeal to "look, people agree with me", about the importance of effect sizes:
+
+>Forty-two years ago, Frank Yates, a close colleague and friend of R. A. Fisher, wrote about Fisher's "Statistical  Methods for Research Workers" (1925/1951),  
+>>It has caused scientific research workers to pay undue attention   to the results of the tests of significance they perform on their data. . . and too little to the estimates of the magnitude of the effects they are estimating (p. 32)
+
+Sure it's interesting that Yates said so. But it would be more interesting if he gave actual real arguments for his position.
+
+## What else?
+He has some remarks about the fact that $R^2$ depends on the variance of the covariates. I don't think this is known well enough, but it has nothing to do with $p$-values. 
+
+At one point he says the following:
+
+> He reminded researchers that, given the fact that the nil hypothesis is always false, the rate of Type I errors  is 0%, not 5%, and that only Type II errors can be made, which run typically at about 50% (Cohen, 1962; Sedlmeier & Gigerenzer, 1989).
+
+This is absurd. The type I error rate is $5$% by definition: It's the probability of rejecting the null hypothesis conditioned on it being right. You can make it $0$% by chaning its definition from $P(\textrm{reject}|H_0)$ to $P(\textrm{reject},H_0)$, but in that isn't the definition, as it requires a prior on $H_0$ to be calculable. But who cares, it's just meant as a cheap shot at NHST anyway.
+
+He has read a paper with some interesting empirics though.
+
+>Of Oakes's (1986) academic psychologists 42 out of 70 believed that a t of 2.7, with df= 18 and p = .01, meant that if the experiment were repeated many times, a significant result would be obtained 99% of the time.
+
+## Verdict
+Skip it. If you don't know that the *p*-value is not equal to $P(H_0 \mid D)$, you're better off taking a course or two in statistics. 
+
+On the other hand, it have been cited over 4000 times and I might have had too high expectations. Moreover, it's a quick read. So do what you want.
+
+The topic of this paper is serious, but the treatment is *not*, that's for sure. Hopefully there are more serious papers out there that deals with this topic.
+
+Couldn't it be a fun read if you already hate NHST? I doubt it. I also hate NHST -- I was awakened from my dogmatic Fisherian slumber and found Bayes not too long ago. But I also hate this paper. 

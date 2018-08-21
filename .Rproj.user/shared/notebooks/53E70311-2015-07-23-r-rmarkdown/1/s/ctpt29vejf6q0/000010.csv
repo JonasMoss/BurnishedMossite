@@ -1,6 +1,0 @@
-"0","legend(""topleft"", col = c(""black"", ""blue""), pch = c(20, 20), lty = c(1, 1),"
-"0","       legend = c(paste0(""Scenario A; Slope: "", "
-"0","                         signif(coef(lm(ks_A_small~ ns_small ))[2],2)),"
-"0","                  paste0(""Scenario B; Slope: "", "
-"0","                         signif(coef(lm(ks_B_small ~ ns_small ))[2],2))),"
-"0","       bty = ""n"")"

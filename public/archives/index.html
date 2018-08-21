@@ -28,15 +28,15 @@
     
 
     
-    <meta name="description" content="Hugo tranquilpeak theme demo">
-    <meta property="og:description" content="Hugo tranquilpeak theme demo">
+    <meta name="description" content="A statistics and science blog.">
+    <meta property="og:description" content="A statistics and science blog.">
     <meta property="og:type" content="blog">
     <meta property="og:title" content="Archives">
     <meta property="og:url" content="/archives/">
     <meta property="og:site_name" content="Burnished Mossite">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Burnished Mossite">
-    <meta name="twitter:description" content="Hugo tranquilpeak theme demo">
+    <meta name="twitter:description" content="A statistics and science blog.">
     
       <meta name="twitter:creator" content="@JonasMoss313">
     
@@ -217,6 +217,23 @@
     <div class="archive archive-year box" data-date="2018">
       <h4 class="archive-title" style="text-decoration: none;">2018</h4>
       
+        <ul class="archive-posts archive-month" data-date="201808">
+          <h5 class="archive-title" style="text-decoration: none;">August</h5>
+          
+            <li class="archive-post archive-day" data-date="20180821">
+              <a class="archive-post-title" href="/2018/08/h-function/">Handling side effects with the .H function</a>
+            </li>
+          
+            <li class="archive-post archive-day" data-date="20180819">
+              <a class="archive-post-title" href="/2018/08/synthese-neyman-1977/">Commentary on Synthese (1977) Part I: Neyman&#39;s Paper</a>
+            </li>
+          
+            <li class="archive-post archive-day" data-date="20180810">
+              <a class="archive-post-title" href="/2018/08/berkson-commentary/">A commentary on &#39;Tests of Significance Considered as Evidence&#39; (1942) by Joseph Berkson</a>
+            </li>
+          
+        </ul>
+      
         <ul class="archive-posts archive-month" data-date="201804">
           <h5 class="archive-title" style="text-decoration: none;">April</h5>
           
@@ -284,6 +301,61 @@
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="/2018/08/h-function/">
+                <h3 class="media-heading">Handling side effects with the .H function</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">The Problem of Side EffectsWhen I am writing \(\mathtt{R}\) code, I often do stuff in the body of my script that creates undesired side effects.
+# n and x constants I wish to use latern = 100x = pi^2/6# lots of code# ...# I suddenly wish to plot somethingn = 1:1000x = 0.1plot(n, pnorm(sqrt(n)*x), type = &quot;l&quot;)Notice that n and x have been rewritten.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/08/synthese-neyman-1977/">
+                <h3 class="media-heading">Commentary on Synthese (1977) Part I: Neyman&#39;s Paper</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Synthese is a generalist philosophy journal. It’s usually ranked among the 20 best, usually at the lower end. At least some of its focus is on themes I care about, including decision theory, interpretations of probability, probability paradoxes such as the Sleeping Beauty problem, and, of course, the philosophy of statistics.
+And the first issue of the 36th volume of Synthese was devoted to the philosophy of statistics. The occasion was Allan Birnbaum’s passing the year before, and the issue is built around his last submission to the journal.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/08/berkson-commentary/">
+                <h3 class="media-heading">A commentary on &#39;Tests of Significance Considered as Evidence&#39; (1942) by Joseph Berkson</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">This paper is old, and it shows! He starts of with the following:
+There was a time when we did not talk about tests of significance; we simply did them. We tested whether certain quantities we significant in the light of their standard errors, without inquiring as to just what was involved in the procedure, or attempting to generalize it.
+Sounds like the golden age of statistics! But the twilight of that age had long passed, for when he wrote this paper, statistics “consists almost entirely of tests of significance”.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="/2018/04/optional-stopping-streaks/">
                 <h3 class="media-heading">Optional stopping, streaks, and champagne</h3>
               </a>
@@ -306,7 +378,7 @@
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         1 posts found
+         4 posts found
       </p>
     </div>
   </div>

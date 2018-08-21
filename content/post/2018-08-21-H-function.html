@@ -1,0 +1,67 @@
+---
+title: "Handling side effects with the .H function"
+author: "Jonas Moss"
+date: '2018-08-21'
+slug: H-function
+tags:
+- R
+categories:
+- programming
+---
+
+
+
+<div id="the-problem-of-side-effects" class="section level3">
+<h3>The Problem of Side Effects</h3>
+<p>When I am writing <span class="math inline">\(\mathtt{R}\)</span> code, I often do stuff in the body of my script that creates undesired side effects.</p>
+<pre class="r"><code># n and x constants I wish to use later
+n = 100
+x = pi^2/6
+
+# lots of code
+# ...
+
+# I suddenly wish to plot something
+n = 1:1000
+x = 0.1
+plot(n, pnorm(sqrt(n)*x), type = &quot;l&quot;)</code></pre>
+<p><img src="/post/2018-08-21-H-function_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Notice that <code>n</code> and <code>x</code> have been rewritten. So what should I do if I find myself in need of their original values? Then I will have to hunt down where I’ve used <code>n</code> and <code>x</code> in my script and either change the variable names or put the entire paragraph in a function.</p>
+<p>It’s probably smarter to put it all in a function, as the new variable names (e.g. <code>n2</code> and <code>x2</code>) could also have important functions in the script. Since I obviously wish my function to be anonymous, my script will look like this:</p>
+<pre class="r"><code>funtion() {
+  n = 1:1000
+  x = 0.1
+  plot(n, pnorm(sqrt(n)*x)
+}()
+#</code></pre>
+<p>This code isn’t beautiful at all. It’s also cryptic, as it doesn’t convey the <em>purpose</em> of the function.</p>
+</div>
+<div id="the-solution" class="section level3">
+<h3>The Solution</h3>
+<p>To solve this problem I’ve made the <em>hide</em> function:</p>
+<pre class="r"><code>.H = function(expr) rlang::new_function(alist(), substitute(expr))()</code></pre>
+<p>Here “H” is for hide, and the dot in front of it makes the function hidden, which prevents it from cluttering your environment.</p>
+<p>Here’s how <code>.H</code> works: It creates a function new function and executes it. The argument list of the new function is empty, this is why <code>alist()</code> appears. The body of the function is the argument passed to <code>.H</code>, that is the purpose of <code>substitute(expr)</code>. The package <code>rlang</code> is great for these sort of things, but it’s easy to write <code>.H</code> without it. The following function is equivalent to <code>.H</code>:</p>
+<pre class="r"><code>.H2 = function(expr) {
+  f = function() {}
+  body(f) = substitute(expr)
+  f()
+}</code></pre>
+<p>I prefer the version using <code>rlang</code> since it is a one-liner.</p>
+<p>With this function in hand, I can write</p>
+<pre class="r"><code>.H({
+  n = 1:1000
+  x = 0.1
+  plot(n, pnorm(sqrt(n)*x), type = &quot;l&quot;)
+})</code></pre>
+<p><img src="/post/2018-08-21-H-function_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="conclusion" class="section level3">
+<h3>Conclusion</h3>
+<p>With the function <code>.H</code> I have reached my following three goals:</p>
+<ol style="list-style-type: decimal">
+<li>Plotting without side effects,</li>
+<li>relatively pretty code,</li>
+<li>code that is easy to understand, as <code>.H</code> is only used to avoid side effects of code that would usually be found in the body of the script.</li>
+</ol>
+</div>
