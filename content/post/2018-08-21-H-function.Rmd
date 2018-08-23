@@ -5,6 +5,7 @@ date: '2018-08-21'
 slug: H-function
 tags:
 - R
+- non-standard evaluation
 categories:
 - programming
 ---

@@ -1,0 +1,123 @@
+---
+title: "Easy lambdas"
+author: "Jonas Moss"
+date: '2018-08-23'
+slug: easy-lambda
+tags:
+- R
+- non-standard evaluation
+categories:
+- programming
+---
+
+`R` already has anonymous functions. Just write `function(x) do_someting` and 
+you're done. This post is for all of us who are not satisified with this 
+solution. For one, it's exhausting to write to long `function(x)` instead of, 
+say, `L(x)`, but that's not all of it! 
+
+Take the following example, a calculation of the maximum likelihood estimate of 
+a gamma distribution:
+
+```{r, eval = TRUE}
+set.seed(313)
+x = rgamma(100, 2, 4)
+nlm(f = function(p) -mean(dgamma(x, shape = p[1], rate = p[2], log = TRUE)), 
+    p = c(1, 1))$estimate
+```
+Here the hassle is to keep track of the indices of `p`, which is not even needed 
+as a variable name. The function argument of `nlm` works perfectly well with 
+no named arguments! 
+
+In this post I will introduce the L-function, which allows you to write the 
+previous function call like this:
+
+```r
+nlm(f = L(-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE))), 
+    p = c(1, 1))
+```
+
+The function created by L doesn't have any named arguments, but you can refer to 
+the unnamed arguments by the question mark. Actually, the function `f` above is
+equivalent to the following, just with some syntactic sugar on top.
+
+```r
+function(...) -mean(dgamma(x, ...[[1]], ...[[2]], log = TRUE)))
+```
+
+This works in the `nlm` case since whenever `f` has the signature `...` and 
+receives a vector, it interprets this as `do.call` over the vector:
+
+```{r, eval = TRUE}
+f = function(...) ...[[1]]
+f(c(1, 2, 3))
+``` 
+
+The consequence is that functions that depend on vectorization (e.g. 
+`integrate`) won't work together with L.
+
+### The L function
+```{r, eval = TRUE}
+
+call_replace = function(call) {
+  if(length(call) > 1) {
+    if(call[[1]] == quote(`?`)) 
+      if(is.numeric(call[[2]])) 
+        return(parse(text = paste0("...[[", eval(call[[2]]), "]]"))[[1]])
+    
+    new = as.call(lapply(1:length(call), function(i) call_replace(call[[i]])))
+    names(new) = names(call)
+    new
+  } else call
+}
+
+L = function(call, quoted = FALSE) {
+  call = if(!quoted) substitute(call) else call
+  f = function(...) NULL
+  body(f) = call_replace(call)
+  environment(f) = parent.frame()
+  f
+}
+
+```
+
+What does it do? First, `call_replace` travels recursively through the call and 
+replaces any instance of `?n` with `...[[n]]`. The `L` constructs a function 
+from the modified call.
+
+### Using magrittr
+It's also possible to make a piped version of this:
+
+```{r, eval = TRUE}
+library("magrittr")
+
+`%L>%` = function(lhs, rhs) {
+
+  lhs_call = call(name = "function", 
+                  quote(function(...) {})[[2]], 
+                  call_replace(substitute(lhs)))
+  
+  rhs_call = substitute(rhs)
+  
+  eval(call("%>%", lhs_call, rhs_call))
+}
+
+-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE)) %L>% 
+  nlm(p = c(1, 1)) %$%
+  estimate
+```
+
+This piped version won't work if it is placed in the middle of a magrittr pipe. 
+Take this example:
+
+```{r, eval = TRUE, error = TRUE}
+rgamma(100, 2, 7) %>%
+  -mean(dgamma(shape = ?1, rate = ?2, log = TRUE)) %L>% 
+  nlm(p = c(1, 1))
+```
+
+### Ideas to modify L
+
+We could use `!n` to reference the $n$th argument of the created function. 
+Moreover, they could be named and given default values. The propotype
+`L(f(a = !1 == b <- c, 1, 2, 3))` will return a function of one argument named 
+`b` with default value `c`.

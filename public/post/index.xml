@@ -6,10 +6,21 @@
     <description>Recent content in Posts on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 21 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Easy lambdas</title>
+      <link>/2018/08/easy-lambda/</link>
+      <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/08/easy-lambda/</guid>
+      <description>R already has anonymous functions. Just write function(x) do_someting and you’re done. This post is for all of us who are not satisified with this solution. For one, it’s exhausting to write to long function(x) instead of, say, L(x), but that’s not all of it!
+Take the following example, a calculation of the maximum likelihood estimate of a gamma distribution:
+set.seed(313)x = rgamma(100, 2, 4)nlm(f = function(p) -mean(dgamma(x, shape = p[1], rate = p[2], log = TRUE)), p = c(1, 1))$estimate## [1] 2.</description>
+    </item>
     
     <item>
       <title>Handling side effects with the .H function</title>

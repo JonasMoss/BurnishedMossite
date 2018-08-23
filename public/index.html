@@ -228,6 +228,62 @@
     
     <div class="postShorten-header">
       <h1 class="postShorten-title" itemprop="headline">
+        <a class="link-unstyled" href="/2018/08/easy-lambda/">
+          Easy lambdas
+        </a>
+      </h1>
+      
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-08-23T00:00:00Z">
+        
+  August 23, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="/categories/programming">programming</a>
+    
+  
+
+  </div>
+
+    </div>
+    <div class="postShorten-excerpt" itemprop="articleBody">
+      R already has anonymous functions. Just write function(x) do_someting and you’re done. This post is for all of us who are not satisified with this solution. For one, it’s exhausting to write to long function(x) instead of, say, L(x), but that’s not all of it!
+Take the following example, a calculation of the maximum likelihood estimate of a gamma distribution:
+set.seed(313)x = rgamma(100, 2, 4)nlm(f = function(p) -mean(dgamma(x, shape = p[1], rate = p[2], log = TRUE)), p = c(1, 1))$estimate## [1] 2.
+      <p>
+        <a href="/2018/08/easy-lambda/" class="postShorten-excerpt_link link">Continue reading</a>
+        
+      </p>
+    </div>
+  </div>
+  
+</article>
+
+          
+            
+  
+    
+      
+        
+      
+    
+  
+
+
+  
+
+<article class="postShorten postShorten--thumbnailimg-bottom" itemscope itemType="http://schema.org/BlogPosting">
+  <div class="postShorten-wrap">
+    
+    <div class="postShorten-header">
+      <h1 class="postShorten-title" itemprop="headline">
         <a class="link-unstyled" href="/2018/08/h-function/">
           Handling side effects with the .H function
         </a>
@@ -497,6 +553,25 @@ And the first issue of the 36th volume of Synthese was devoted to the philosophy
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="/2018/08/easy-lambda/">
+                <h3 class="media-heading">Easy lambdas</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">R already has anonymous functions. Just write function(x) do_someting and you’re done. This post is for all of us who are not satisified with this solution. For one, it’s exhausting to write to long function(x) instead of, say, L(x), but that’s not all of it!
+Take the following example, a calculation of the maximum likelihood estimate of a gamma distribution:
+set.seed(313)x = rgamma(100, 2, 4)nlm(f = function(p) -mean(dgamma(x, shape = p[1], rate = p[2], log = TRUE)), p = c(1, 1))$estimate## [1] 2.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="/2018/08/h-function/">
                 <h3 class="media-heading">Handling side effects with the .H function</h3>
               </a>
@@ -574,7 +649,7 @@ And the first issue of the 36th volume of Synthese was devoted to the philosophy
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         4 posts found
+         5 posts found
       </p>
     </div>
   </div>

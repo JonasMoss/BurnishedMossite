@@ -88,6 +88,29 @@ L = function(call, quoted = FALSE) {
 
 nlm(L(-mean(dgamma(x, ...[[1]], ...[[2]], log = TRUE))), p = c(1, 1))
 
+# What abou %l>%? It takes an unevaluated call, makes it into a function, and
+# feeds it to the next function just like %>%. 
+# 
+# -mean(dgamma(x, shape = !1, rate = !2, log = TRUE)) %l>% nlm(p = c(1, 1))
+# This makes a function with !-marked arguments given to ... and ?-marked 
+# arguments given to named arguments. If "<-" is present, it creates default 
+# arguments.
+
+
+call = quote(-mean(dgamma(x, shape = !1, rate = !2, log = TRUE)))
+L = function(call, quoted = FALSE) {
+  call = if(!quoted) substitute(call) else call
+  f = function(...) NULL
+  body(f) = call
+  environment(f) = parent.frame()
+  f
+}
+
+
+
+
+
+
 
 
 
@@ -128,3 +151,79 @@ f(H(g(y, 2*y)), y = 3)
 
 
 nlm(H(-mean(dgamma(x, p[1], p[2], log = TRUE))), p = c(1, 1))
+
+
+### ============================================================================
+### NEW WORK (22/08/18)
+### ============================================================================
+
+call_replace = function(call) {
+  if(length(call) > 1) {
+    if(call[[1]] == quote(`?`)) 
+      if(is.numeric(call[[2]])) 
+        return(parse(text = paste0("...[[", eval(call[[2]]), "]]"))[[1]])
+    
+    new = as.call(lapply(1:length(call), function(i) call_replace(call[[i]])))
+    names(new) = names(call)
+    new
+  } else call
+}
+
+L = function(call, quoted = FALSE) {
+  call = if(!quoted) substitute(call) else call
+  f = function(...) NULL
+  body(f) = call_replace(call)
+  environment(f) = parent.frame()
+  f
+}
+
+
+L(-mean(dgamma(x, ?1, ?2, log = TRUE)))
+
+call = quote(-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE)))
+
+set.seed(313)
+x = rgamma(100, 2, 4)
+
+nlm(f       = L(-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE))), 
+    p       = c(1, 1),
+    hessian = TRUE)
+
+
+library("magrittr")
+
+`%L>%` = function(lhs, rhs) {
+  
+  lhs_call = call(name = "function", 
+                  quote(function(...) {})[[2]], 
+                  call_replace(substitute(lhs)))
+  
+  rhs_call = substitute(rhs)
+  
+  eval(call("%>%", lhs_call, rhs_call))
+}
+
+-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE)) %L>% 
+  nlm(p = c(1, 1))
+
+
+rgamma(100, 2, 7) %>%
+  -mean(dgamma(., shape = ?1, rate = ?2, log = TRUE)) %L>% 
+  nlm(p = c(1, 1))
+
+
+integrate(L(dnorm(?1)),lower = -Inf, upper = Inf)
+
+dnorm(x = ?1) %L>% 
+  sapply(seq(-3, 3, by = 0.01), .) %>%
+  plot
+
+
+
+fun = function(call) L(substitute(call), quoted = TRUE)
+fun = function(call_) {
+  rep_call = call_replace(substitute(call_))
+  call("function", quote(function(...) {})[[2]], rep_call)
+}
+#fun = function(call) call_replace(substitute(call))
+fun(-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE)))
