@@ -23,6 +23,17 @@ But in 1958 he changed this into
 
 The interested reader will have troubles verifying Lehmann's claim, as she won't have access to all 14 editions of SMRW. In addition, if she were to obtain them, the toil of going through them all would be immense. Moreover, she would have a hard time finding other interesting evolutions of thought in SMRW if she so wished.
 
+Stigler applied SMRW in a similar way in his [Fisher and the 5% Level](https://www.tandfonline.com/doi/pdf/10.1080/09332480.2008.10722926?casa_token=1BU-Zytzz28AAAAA:dpQvSsi6kqce4y9NBa0u7gEGNAGLcHLjRPktAhy1k4U_g8cjKiVSpNiEDJmLRgT-PbWzSZ_rBaMc), which discusses the changes in $F$-tables over successive editions. He
+notes
+
+> Note that only Fisher’s Table VI [the $F$-table] strongly emphasized the 5% point. The others gave varying degrees of extended coverage, especially for the Normal, t, and chi-square distributions, where they gave a pretty good idea of each whole distribution.
+
+And goes on to say
+
+> My own view is that while Fisher’s initial Table VI (but only that table) fixed attention at the 5% level (rather than, say, 6%, 10%, or 2%), that fixation is largely the result of a social processextending back well before Fisher.
+
+Read the short paper for more goodies.
+
 ## Variorum
 
 A *variorum* is a special edition of a book (or collection of books, structured in a way so that you can track changes between editions. It's often done with the Bible, and Kant's *Kritik der Reinen Vernuft* is always a variorum --- even Pax's Norwegian edition is a variorum edition. Darwin's *On the Origin of Species* had six editions (that become progressively *worse*), and there's a [variorum edition](https://www.amazon.com/Origin-Species-Variorum-Text-Reprint/dp/0812219546/ref=sr_1_1?s=books&ie=UTF8&qid=1536737684&sr=1-1&keywords=origin+of+species+variorum&dpID=51gClcG8qgL&preST=_SY291_BO1,204,203,200_QL40_&dpSrc=srch) for this one as well.
@@ -31,3 +42,7 @@ Even Fisher has been subject to variorumization. Henry Bennett edited a variorum
 
 ## Proposal
 Collect all editions of SMRW and make a variorum.
+
+
+### Edits
+* *9/12:* Added Stigler's paper as an example of an application of SMRW.
