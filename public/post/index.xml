@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Variorum of Statistical Methods for Research Workers</title>
+      <link>/2018/09/smrw-variorum/</link>
+      <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/09/smrw-variorum/</guid>
+      <description>Statistical Methods for Research Workers (1924, henceforth SMRW) was Fisher’s first book. Its’ a textbook for practicing scientist, and probably the most important book on practical statistics book published. It went through 14 editions from 1924 to 1970.
+The book is obviously of pure historical interest, and it should be illuminating in itself to read the perstives of Fisher. An interesting application of SMRW, is to track changes in Fisher’s thought by looking at the changes in editions of SMRW.</description>
+    </item>
     
     <item>
       <title>Easy lambdas</title>
