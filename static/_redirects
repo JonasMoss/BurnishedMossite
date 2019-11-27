@@ -1,2 +1,2 @@
 # Optional: Redirect default Netlify subdomain to primary domain
-https://burnishedmossite.netlify.com/ https://blog.jonasmoss.com/:splat 301!
+https://burnishedmossite.netlify.com/* https://blog.jonasmoss.com/:splat 301!
