@@ -28,7 +28,7 @@ x = 0.1
 plot(n, pnorm(sqrt(n)*x), type = &quot;l&quot;)</code></pre>
 <p><img src="/post/2018-08-21-H-function_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Notice that <code>n</code> and <code>x</code> have been rewritten. So what should I do if I find myself in need of their original values? Then I will have to hunt down where I’ve used <code>n</code> and <code>x</code> in my script and either change the variable names or put the entire paragraph in a function.</p>
-<p>It’s probably smarter to put it all in a function, as the new variable names (e.g. <code>n2</code> and <code>x2</code>) could also have important functions in the script. Since I obviously wish my function to be anonymous, my script will look like this:</p>
+<p>It’s probably smarter to put it all in a function, as the new variable names (e.g. <code>n2</code> and <code>x2</code>) could also have important functions in the script. Since I obviously wish my function to be anonymous, my script will look like this:</p>
 <pre class="r"><code>funtion() {
   n = 1:1000
   x = 0.1

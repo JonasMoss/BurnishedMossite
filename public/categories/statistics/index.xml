@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Statistics on Burnished Mossite</title>
-    <link>/categories/statistics/</link>
-    <description>Recent content in Statistics on Burnished Mossite</description>
+    <title>statistics on Burnished Mossite</title>
+    <link>https://blog.jonasmoss.com/categories/statistics/</link>
+    <description>Recent content in statistics on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.jonasmoss.com/categories/statistics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Variorum of Statistical Methods for Research Workers</title>
-      <link>/2018/09/smrw-variorum/</link>
+      <link>https://blog.jonasmoss.com/2018/09/smrw-variorum/</link>
       <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/09/smrw-variorum/</guid>
+      <guid>https://blog.jonasmoss.com/2018/09/smrw-variorum/</guid>
       <description>Statistical Methods for Research Workers (1924, henceforth SMRW) was Fisher’s first book. Its’ a textbook for practicing scientist, and probably the most important book on practical statistics book published. It went through 14 editions from 1924 to 1970.
 The book is obviously of pure historical interest, and it should be illuminating in itself to read the perstives of Fisher. An interesting application of SMRW is to track changes in Fisher’s thought by looking at the changes in editions of SMRW.</description>
     </item>
     
     <item>
       <title>Commentary on Synthese (1977) Part I: Neyman&#39;s Paper</title>
-      <link>/2018/08/synthese-neyman-1977/</link>
+      <link>https://blog.jonasmoss.com/2018/08/synthese-neyman-1977/</link>
       <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/08/synthese-neyman-1977/</guid>
+      <guid>https://blog.jonasmoss.com/2018/08/synthese-neyman-1977/</guid>
       <description>Synthese is a generalist philosophy journal. It’s usually ranked among the 20 best, usually at the lower end. At least some of its focus is on themes I care about, including decision theory, interpretations of probability, probability paradoxes such as the Sleeping Beauty problem, and, of course, the philosophy of statistics.
 And the first issue of the 36th volume of Synthese was devoted to the philosophy of statistics. The occasion was Allan Birnbaum’s passing the year before, and the issue is built around his last submission to the journal.</description>
     </item>
     
     <item>
       <title>A commentary on &#39;Tests of Significance Considered as Evidence&#39; (1942) by Joseph Berkson</title>
-      <link>/2018/08/berkson-commentary/</link>
+      <link>https://blog.jonasmoss.com/2018/08/berkson-commentary/</link>
       <pubDate>Fri, 10 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/08/berkson-commentary/</guid>
+      <guid>https://blog.jonasmoss.com/2018/08/berkson-commentary/</guid>
       <description>This paper is old, and it shows! He starts of with the following:
 There was a time when we did not talk about tests of significance; we simply did them. We tested whether certain quantities we significant in the light of their standard errors, without inquiring as to just what was involved in the procedure, or attempting to generalize it.
 Sounds like the golden age of statistics! But the twilight of that age had long passed, for when he wrote this paper, statistics “consists almost entirely of tests of significance”.</description>
@@ -44,12 +44,12 @@ And the first issue of the 36th volume of Synthese was devoted to the philosophy
     
     <item>
       <title>Optional stopping, streaks, and champagne</title>
-      <link>/2018/04/optional-stopping-streaks/</link>
+      <link>https://blog.jonasmoss.com/2018/04/optional-stopping-streaks/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/04/optional-stopping-streaks/</guid>
-      <description>At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
-Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.</description>
+      <guid>https://blog.jonasmoss.com/2018/04/optional-stopping-streaks/</guid>
+      <description>At the Psychological Methods Discussion group, Ben Ambridge asked the followingquestion:
+Hi everyone - I was wondering (don’t worry, I haven’t actually done this!)what would be wrong statistically speaking with an approach where you run afrequentist t-test (or whatever) after adding each participant and stoptesting participants when the p value has remained below 0.05(or 0.001 or whatever) for - say - each of the last 20 participants.</description>
     </item>
     
   </channel>

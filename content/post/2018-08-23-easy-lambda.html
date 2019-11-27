@@ -12,24 +12,35 @@ categories:
 
 
 
-<p><code>R</code> already has anonymous functions. Just write <code>function(x) do_someting</code> and you’re done. This post is for all of us who are not satisified with this solution. For one, it’s exhausting to write to long <code>function(x)</code> instead of, say, <code>L(x)</code>, but that’s not all of it!</p>
-<p>Take the following example, a calculation of the maximum likelihood estimate of a gamma distribution:</p>
+<p><code>R</code> already has anonymous functions. Just write <code>function(x) do_someting</code> and
+you’re done. This post is for all of us who are not satisified with this
+solution. For one, it’s exhausting to write to long <code>function(x)</code> instead of,
+say, <code>L(x)</code>, but that’s not all of it!</p>
+<p>Take the following example, a calculation of the maximum likelihood estimate of
+a gamma distribution:</p>
 <pre class="r"><code>set.seed(313)
 x = rgamma(100, 2, 4)
 nlm(f = function(p) -mean(dgamma(x, shape = p[1], rate = p[2], log = TRUE)), 
     p = c(1, 1))$estimate</code></pre>
 <pre><code>## [1] 2.138694 4.223359</code></pre>
-<p>Here the hassle is to keep track of the indices of <code>p</code>, which is not even needed as a variable name. The function argument of <code>nlm</code> works perfectly well with no named arguments!</p>
-<p>In this post I will introduce the L-function, which allows you to write the previous function call like this:</p>
+<p>Here the hassle is to keep track of the indices of <code>p</code>, which is not even needed
+as a variable name. The function argument of <code>nlm</code> works perfectly well with
+no named arguments!</p>
+<p>In this post I will introduce the L-function, which allows you to write the
+previous function call like this:</p>
 <pre class="r"><code>nlm(f = L(-mean(dgamma(x, shape = ?1, rate = ?2, log = TRUE))), 
     p = c(1, 1))</code></pre>
-<p>The function created by L doesn’t have any named arguments, but you can refer to the unnamed arguments by the question mark. Actually, the function <code>f</code> above is equivalent to the following, just with some syntactic sugar on top.</p>
+<p>The function created by L doesn’t have any named arguments, but you can refer to
+the unnamed arguments by the question mark. Actually, the function <code>f</code> above is
+equivalent to the following, just with some syntactic sugar on top.</p>
 <pre class="r"><code>function(...) -mean(dgamma(x, ...[[1]], ...[[2]], log = TRUE)))</code></pre>
-<p>This works in the <code>nlm</code> case since whenever <code>f</code> has the signature <code>...</code> and receives a vector, it interprets this as <code>do.call</code> over the vector:</p>
+<p>This works in the <code>nlm</code> case since whenever <code>f</code> has the signature <code>...</code> and
+receives a vector, it interprets this as <code>do.call</code> over the vector:</p>
 <pre class="r"><code>f = function(...) ...[[1]]
 f(c(1, 2, 3))</code></pre>
 <pre><code>## [1] 1</code></pre>
-<p>The consequence is that functions that depend on vectorization (e.g. <code>integrate</code>) won’t work together with L.</p>
+<p>The consequence is that functions that depend on vectorization (e.g. 
+<code>integrate</code>) won’t work together with L.</p>
 <div id="the-l-function" class="section level3">
 <h3>The L function</h3>
 <pre class="r"><code>call_replace = function(call) {
@@ -51,7 +62,9 @@ L = function(call, quoted = FALSE) {
   environment(f) = parent.frame()
   f
 }</code></pre>
-<p>What does it do? First, <code>call_replace</code> travels recursively through the call and replaces any instance of <code>?n</code> with <code>...[[n]]</code>. The <code>L</code> constructs a function from the modified call.</p>
+<p>What does it do? First, <code>call_replace</code> travels recursively through the call and
+replaces any instance of <code>?n</code> with <code>...[[n]]</code>. The <code>L</code> constructs a function
+from the modified call.</p>
 </div>
 <div id="using-magrittr" class="section level3">
 <h3>Using magrittr</h3>
@@ -73,7 +86,8 @@ L = function(call, quoted = FALSE) {
   nlm(p = c(1, 1)) %$%
   estimate</code></pre>
 <pre><code>## [1] 2.138694 4.223359</code></pre>
-<p>This piped version won’t work if it is placed in the middle of a magrittr pipe. Take this example:</p>
+<p>This piped version won’t work if it is placed in the middle of a magrittr pipe.
+Take this example:</p>
 <pre class="r"><code>rgamma(100, 2, 7) %&gt;%
   -mean(dgamma(shape = ?1, rate = ?2, log = TRUE)) %L&gt;% 
   nlm(p = c(1, 1))</code></pre>
@@ -81,5 +95,8 @@ L = function(call, quoted = FALSE) {
 </div>
 <div id="ideas-to-modify-l" class="section level3">
 <h3>Ideas to modify L</h3>
-<p>We could use <code>!n</code> to reference the <span class="math inline">\(n\)</span>th argument of the created function. Moreover, they could be named and given default values. The propotype <code>L(f(a = !1 == b &lt;- c, 1, 2, 3))</code> will return a function of one argument named <code>b</code> with default value <code>c</code>.</p>
+<p>We could use <code>!n</code> to reference the <span class="math inline">\(n\)</span>th argument of the created function.
+Moreover, they could be named and given default values. The propotype
+<code>L(f(a = !1 == b &lt;- c, 1, 2, 3))</code> will return a function of one argument named
+<code>b</code> with default value <code>c</code>.</p>
 </div>

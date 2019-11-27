@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Burnished Mossite</title>
-    <link>/tags/</link>
+    <link>https://blog.jonasmoss.com/tags/</link>
     <description>Recent content in Tags on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 19 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.jonasmoss.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Commentary</title>
-      <link>/tags/commentary/</link>
-      <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/commentary/</guid>
-      <description></description>
-    </item>
     
     <item>
-      <title>Frequentism</title>
-      <link>/tags/frequentism/</link>
-      <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/frequentism/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>History</title>
-      <link>/tags/history/</link>
+      <title>history</title>
+      <link>https://blog.jonasmoss.com/tags/history/</link>
       <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/history/</guid>
+      <guid>https://blog.jonasmoss.com/tags/history/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Non Standard Evaluation</title>
-      <link>/tags/non-standard-evaluation/</link>
+      <title>philosophy</title>
+      <link>https://blog.jonasmoss.com/tags/philosophy/</link>
+      <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.jonasmoss.com/tags/philosophy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>non-standard evaluation</title>
+      <link>https://blog.jonasmoss.com/tags/non-standard-evaluation/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/non-standard-evaluation/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Optional Stopping</title>
-      <link>/tags/optional-stopping/</link>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/optional-stopping/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Philosophy</title>
-      <link>/tags/philosophy/</link>
-      <pubDate>Wed, 12 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/philosophy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Psychological Methods</title>
-      <link>/tags/psychological-methods/</link>
-      <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/psychological-methods/</guid>
+      <guid>https://blog.jonasmoss.com/tags/non-standard-evaluation/</guid>
       <description></description>
     </item>
     
     <item>
       <title>R</title>
-      <link>/tags/r/</link>
+      <link>https://blog.jonasmoss.com/tags/r/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r/</guid>
+      <guid>https://blog.jonasmoss.com/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>commentary</title>
+      <link>https://blog.jonasmoss.com/tags/commentary/</link>
+      <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.jonasmoss.com/tags/commentary/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>frequentism</title>
+      <link>https://blog.jonasmoss.com/tags/frequentism/</link>
+      <pubDate>Sun, 19 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.jonasmoss.com/tags/frequentism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>optional stopping</title>
+      <link>https://blog.jonasmoss.com/tags/optional-stopping/</link>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.jonasmoss.com/tags/optional-stopping/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>psychological methods</title>
+      <link>https://blog.jonasmoss.com/tags/psychological-methods/</link>
+      <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.jonasmoss.com/tags/psychological-methods/</guid>
       <description></description>
     </item>
     

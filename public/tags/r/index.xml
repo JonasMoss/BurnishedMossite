@@ -2,44 +2,44 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Burnished Mossite</title>
-    <link>/tags/r/</link>
+    <link>https://blog.jonasmoss.com/tags/r/</link>
     <description>Recent content in R on Burnished Mossite</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 Aug 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.jonasmoss.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Easy lambdas</title>
-      <link>/2018/08/easy-lambda/</link>
+      <link>https://blog.jonasmoss.com/2018/08/easy-lambda/</link>
       <pubDate>Thu, 23 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/08/easy-lambda/</guid>
-      <description>R already has anonymous functions. Just write function(x) do_someting and you’re done. This post is for all of us who are not satisified with this solution. For one, it’s exhausting to write to long function(x) instead of, say, L(x), but that’s not all of it!
-Take the following example, a calculation of the maximum likelihood estimate of a gamma distribution:
+      <guid>https://blog.jonasmoss.com/2018/08/easy-lambda/</guid>
+      <description>R already has anonymous functions. Just write function(x) do_someting andyou’re done. This post is for all of us who are not satisified with thissolution. For one, it’s exhausting to write to long function(x) instead of,say, L(x), but that’s not all of it!
+Take the following example, a calculation of the maximum likelihood estimate ofa gamma distribution:
 set.seed(313)x = rgamma(100, 2, 4)nlm(f = function(p) -mean(dgamma(x, shape = p[1], rate = p[2], log = TRUE)), p = c(1, 1))$estimate## [1] 2.</description>
     </item>
     
     <item>
       <title>Handling side effects with the .H function</title>
-      <link>/2018/08/h-function/</link>
+      <link>https://blog.jonasmoss.com/2018/08/h-function/</link>
       <pubDate>Tue, 21 Aug 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/08/h-function/</guid>
+      <guid>https://blog.jonasmoss.com/2018/08/h-function/</guid>
       <description>The Problem of Side EffectsWhen I am writing \(\mathtt{R}\) code, I often do stuff in the body of my script that creates undesired side effects.
 # n and x constants I wish to use latern = 100x = pi^2/6# lots of code# ...# I suddenly wish to plot somethingn = 1:1000x = 0.1plot(n, pnorm(sqrt(n)*x), type = &amp;quot;l&amp;quot;)Notice that n and x have been rewritten.</description>
     </item>
     
     <item>
       <title>Optional stopping, streaks, and champagne</title>
-      <link>/2018/04/optional-stopping-streaks/</link>
+      <link>https://blog.jonasmoss.com/2018/04/optional-stopping-streaks/</link>
       <pubDate>Sat, 28 Apr 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/04/optional-stopping-streaks/</guid>
-      <description>At the Psychological Methods Discussion group, Ben Ambridge asked the following question:
-Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants.</description>
+      <guid>https://blog.jonasmoss.com/2018/04/optional-stopping-streaks/</guid>
+      <description>At the Psychological Methods Discussion group, Ben Ambridge asked the followingquestion:
+Hi everyone - I was wondering (don’t worry, I haven’t actually done this!)what would be wrong statistically speaking with an approach where you run afrequentist t-test (or whatever) after adding each participant and stoptesting participants when the p value has remained below 0.05(or 0.001 or whatever) for - say - each of the last 20 participants.</description>
     </item>
     
   </channel>

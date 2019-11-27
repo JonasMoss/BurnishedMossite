@@ -14,51 +14,102 @@ categories:
 
 
 
-<p>At the Psychological Methods Discussion group, Ben Ambridge asked the following question:</p>
+<p>At the Psychological Methods Discussion group, Ben Ambridge asked the following
+question:</p>
 <blockquote>
-<p>Hi everyone - I was wondering (don’t worry, I haven’t actually done this!) what would be wrong statistically speaking with an approach where you run a frequentist t-test (or whatever) after adding each participant and stop testing participants when the p value has remained below 0.05 (or 0.001 or whatever) for - say - each of the last 20 participants. It feels like it must be wrong somehow, but why?</p>
+<p>Hi everyone - I was wondering (don’t worry, I haven’t actually done this!)
+what would be wrong statistically speaking with an approach where you run a
+frequentist t-test (or whatever) after adding each participant and stop
+testing participants when the p value has remained below 0.05
+(or 0.001 or whatever) for - say - each of the last 20 participants.
+It feels like it must be wrong somehow, but why?</p>
 </blockquote>
-<p>The thread, which contains several good comments, is <a href="https://www.facebook.com/groups/853552931365745/permalink/1721184561269240/">here.</a> Some of the replies mention simulations, but no simulations are actually presented. And that brings us to the purpose of this post, namely to run a small simulation study to asses what happens under Ben Ambridge’s scenario.</p>
-<p>But first let’s understand the inuition behind this proposal. Consider a sequence of coin tosses. If the true probability of success is <span class="math inline">\(p\)</span>, the probability of <span class="math inline">\(k\)</span> successes in a row is <span class="math inline">\(p^{k}\)</span>. If <span class="math inline">\(p = 0.05\)</span>, the probability of 20 consequtive successes equals <span class="math inline">\(0.05^{20} \approx 10^-26\)</span>. So if we assume independence of the tests, a 20-ary streak gives us strong evidence against <span class="math inline">\(H_{0}\)</span>.</p>
-<p>The counterintuition is as follows. The sequence of estimators <span class="math inline">\(T_{i}\)</span> is <em>not independent</em>. It could take a long time to throw away already obtained information, so that <span class="math inline">\(T_{i}\)</span> and <span class="math inline">\(T_{j}\)</span> become approximately independent.</p>
+<p>The thread, which contains several good comments, is <a href="https://www.facebook.com/groups/853552931365745/permalink/1721184561269240/">here.</a>
+Some of the replies mention simulations, but no simulations are actually presented.
+And that brings us to the purpose of this post, namely to run a small simulation
+study to asses what happens under Ben Ambridge’s scenario.</p>
+<p>But first let’s understand the inuition behind this proposal. Consider a
+sequence of coin tosses. If the true probability of success is <span class="math inline">\(p\)</span>, the
+probability of <span class="math inline">\(k\)</span> successes in a row is <span class="math inline">\(p^{k}\)</span>. If <span class="math inline">\(p = 0.05\)</span>, the probability
+of 20 consequtive successes equals <span class="math inline">\(0.05^{20} \approx 10^-26\)</span>. So if we assume
+independence of the tests, a 20-ary streak gives us strong evidence against
+<span class="math inline">\(H_{0}\)</span>.</p>
+<p>The counterintuition is as follows. The sequence of estimators <span class="math inline">\(T_{i}\)</span> is <em>not
+independent</em>. It could take a long time to throw away already obtained information,
+so that <span class="math inline">\(T_{i}\)</span> and <span class="math inline">\(T_{j}\)</span> become approximately independent.</p>
 <p>Notice that Ben’s problem can be understood in two ways:</p>
 <ol style="list-style-type: decimal">
-<li><em>Scenario A</em>: The researcher decides in advance to collect at most <span class="math inline">\(n\)</span> samples. If she observes a streak in this sample, she pops the champagne. If she doesn’t observe a streak during the <span class="math inline">\(n\)</span> first samples, but her last computed test statistic is significant, she changes her mind and continues to sample for at most <span class="math inline">\(k-1\)</span> steps more (<span class="math inline">\(k = 20\)</span> in Ben’s example). If she obtains a significant streak in this extended sample, she pops the champagne.</li>
-<li><em>Scenario B</em>: The same thing, expect she will never sample more than <span class="math inline">\(n\)</span> participants.</li>
+<li><em>Scenario A</em>: The researcher decides in advance to collect at most
+<span class="math inline">\(n\)</span> samples. If she observes a streak in this sample, she pops the champagne.
+If she doesn’t observe a streak during the <span class="math inline">\(n\)</span> first samples, but her last
+computed test statistic is significant, she changes her mind and continues
+to sample for at most <span class="math inline">\(k-1\)</span> steps more (<span class="math inline">\(k = 20\)</span> in Ben’s example). If she
+obtains a significant streak in this extended sample, she pops the champagne.</li>
+<li><em>Scenario B</em>: The same thing, expect she will never sample more than <span class="math inline">\(n\)</span>
+participants.</li>
 </ol>
 <p>Scenario A is the most plausible one. This is because scenario B makes it<br />
-possible to observe a <span class="math inline">\(k-1\)</span>-streak in the original sample which the researcher wouldn’t be allowed to attempt to extend to a <span class="math inline">\(k\)</span>-streak. And problems of this nature is the a big reason why people care about sequential testing.</p>
-<p>So let’s say I have an <span class="math inline">\(n\)</span> denoting the maximal number of participants, a sequence of test statistics <span class="math inline">\(T_{n}\)</span>, a p-value <span class="math inline">\(\alpha\)</span> (typically equal to <span class="math inline">\(0.05\)</span>) and a sequence of cut-off values <span class="math inline">\(c_{\alpha}(n)\)</span> dependent on <span class="math inline">\(\alpha\)</span>. My two questions are then:</p>
+possible to observe a <span class="math inline">\(k-1\)</span>-streak in the original sample which the researcher
+wouldn’t be allowed to attempt to extend to a <span class="math inline">\(k\)</span>-streak. And problems of this
+nature is the a big reason why people care about sequential testing.</p>
+<p>So let’s say I have an <span class="math inline">\(n\)</span> denoting the maximal number of participants, a
+sequence of test statistics <span class="math inline">\(T_{n}\)</span>, a p-value <span class="math inline">\(\alpha\)</span>
+(typically equal to <span class="math inline">\(0.05\)</span>) and a sequence of cut-off values <span class="math inline">\(c_{\alpha}(n)\)</span>
+dependent on <span class="math inline">\(\alpha\)</span>. My two questions are then:</p>
 <ol style="list-style-type: decimal">
-<li>What is the <span class="math inline">\(k_{n}\)</span> so that the probability of observing a streak of <span class="math inline">\(k\)</span> consecutive test statistics <span class="math inline">\(T_{i} &gt; c_{\alpha}(i)\)</span> is less than or equal to <span class="math inline">\(\alpha\)</span> under Scenario A?</li>
+<li>What is the <span class="math inline">\(k_{n}\)</span> so that the probability of observing a streak of <span class="math inline">\(k\)</span>
+consecutive test statistics <span class="math inline">\(T_{i} &gt; c_{\alpha}(i)\)</span> is less than or equal to
+<span class="math inline">\(\alpha\)</span> under Scenario A?</li>
 <li>The same problem under Scenario B.</li>
 </ol>
-<p>Since I can’t simulate every possible test statistic, I employ the usual trick and assume normality everywhere and always. Hence my test statistic is a <span class="math inline">\(z\)</span>-statistic, and my underlying problem is testing of <span class="math inline">\(H_{0}: \mu = 0\)</span> against <span class="math inline">\(H_{0}: \mu &gt; 0\)</span> for a normal population with known standard deviation equal to <span class="math inline">\(1\)</span>. Finally, my <span class="math inline">\(p\)</span>-value is <span class="math inline">\(0.05\)</span>.</p>
+<p>Since I can’t simulate every possible test statistic, I employ the usual trick
+and assume normality everywhere and always. Hence my test statistic is a
+<span class="math inline">\(z\)</span>-statistic, and my underlying problem is testing of <span class="math inline">\(H_{0}: \mu = 0\)</span> against
+<span class="math inline">\(H_{0}: \mu &gt; 0\)</span> for a normal population with known standard deviation equal to
+<span class="math inline">\(1\)</span>. Finally, my <span class="math inline">\(p\)</span>-value is <span class="math inline">\(0.05\)</span>.</p>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>Results are more interesting than code. Also, graphs are more interesting than tables. So here are some graphs. Scroll down for the code.</p>
+<p>Results are more interesting than code. Also, graphs are more interesting than
+tables. So here are some graphs. Scroll down for the code.</p>
 <div id="first-graph-linearity" class="section level3">
 <h3>First graph: Linearity</h3>
-<p>The <span class="math inline">\(n\)</span>s in this graph is the R vector <code>1:20*50</code> of evenly spaced natural numbers.</p>
-<p><img src="/post/2018-04-28-stopping_files/figure-html/results-for-large-n-1.png" width="672" /> Recall the definition of <span class="math inline">\(k_{n}\)</span>: For each <span class="math inline">\(n\)</span>, it is the required streak length to ascertain a <span class="math inline">\(0.05\)</span> level of the resulting test. So what can we read from this graph?</p>
-<p>1.) The relationship is linear for both scenarios! 2.) For scenario A, the slope is approximately <span class="math inline">\(\frac{1}{4}\)</span>, which means that you will need a streak of length <span class="math inline">\(\frac{1}{5} \cdot n\)</span> to give the test a level of <span class="math inline">\(0.05\)</span>. This is quite a lot. At least the proportion is smaller for scenario B.</p>
+<p>The <span class="math inline">\(n\)</span>s in this graph is the R vector <code>1:20*50</code> of evenly spaced natural
+numbers.</p>
+<p><img src="/post/2018-04-28-stopping_files/figure-html/results-for-large-n-1.png" width="672" />
+Recall the definition of <span class="math inline">\(k_{n}\)</span>: For each <span class="math inline">\(n\)</span>, it is the required streak length
+to ascertain a <span class="math inline">\(0.05\)</span> level of the resulting test. So what can we read from this
+graph?</p>
+<p>1.) The relationship is linear for both scenarios!
+2.) For scenario A, the slope is approximately <span class="math inline">\(\frac{1}{4}\)</span>, which means that
+you will need a streak of length <span class="math inline">\(\frac{1}{5} \cdot n\)</span> to give the test a
+level of <span class="math inline">\(0.05\)</span>. This is quite a lot. At least the proportion is smaller for
+scenario B.</p>
 </div>
 <div id="second-graph-small-ns" class="section level3">
 <h3>Second graph: Small ns</h3>
-<p>Maybe you’re worried that linearity doesn’t hold for small <span class="math inline">\(n\)</span>s? That’s reasonable. So here’s a graph of <span class="math inline">\(n = \{1, 2, \cdots, 50\}\)</span>:</p>
+<p>Maybe you’re worried that linearity doesn’t hold for small <span class="math inline">\(n\)</span>s? That’s
+reasonable. So here’s a graph of <span class="math inline">\(n = \{1, 2, \cdots, 50\}\)</span>:</p>
 <p><img src="/post/2018-04-28-stopping_files/figure-html/results-for-small-n-1.png" width="672" /></p>
-<p>The regression coefficients are slightly different now, and I suspects there’s some weak non-linearity at the start of the function <span class="math inline">\(k_{n}\)</span>.</p>
+<p>The regression coefficients are slightly different now, and I suspects there’s
+some weak non-linearity at the start of the function <span class="math inline">\(k_{n}\)</span>.</p>
 </div>
 <div id="third-graph-probability-of-rejecting-the-null" class="section level3">
 <h3>Third graph: Probability of rejecting the null</h3>
-<p>Finally, here’s a graph of the probability of rejecting the null for different values of <span class="math inline">\(k\)</span>. I’ve taken <span class="math inline">\(n = 100\)</span> here. <span class="math inline">\(H_{0}\)</span> is still true, and we want to find the true <span class="math inline">\(\alpha\)</span> for each <span class="math inline">\(k\)</span>.</p>
+<p>Finally, here’s a graph of the probability of rejecting the null for different
+values of <span class="math inline">\(k\)</span>. I’ve taken <span class="math inline">\(n = 100\)</span> here. <span class="math inline">\(H_{0}\)</span> is still true, and we want
+to find the true <span class="math inline">\(\alpha\)</span> for each <span class="math inline">\(k\)</span>.</p>
 <p><img src="/post/2018-04-28-stopping_files/figure-html/probability-plot-1.png" width="672" /></p>
-<p>What does it tell? For one, a significance level of <span class="math inline">\(0.01\)</span> (the red dotted line) is out of reach for scenario A. This means that you can never use the ‘scenario A’ when aiming for this significance level. Scenario B is alright though. I haven’t checked this for any other <span class="math inline">\(n\)</span> than <span class="math inline">\(100\)</span>.</p>
+<p>What does it tell? For one, a significance level of <span class="math inline">\(0.01\)</span> (the red dotted line)
+is out of reach for scenario A. This means that you can never use the
+‘scenario A’ when aiming for this significance level. Scenario B is alright
+though. I haven’t checked this for any other <span class="math inline">\(n\)</span> than <span class="math inline">\(100\)</span>.</p>
 </div>
 </div>
 <div id="simulating-an-answer-in-r" class="section level1">
 <h1>Simulating an answer in R</h1>
-<p>Here’s my simulation code. I start off with a helper function for calculating streaks in a boolean (logical) vector. The examples should help you understand what it does.</p>
+<p>Here’s my simulation code. I start off with a helper function for calculating
+streaks in a boolean (logical) vector. The examples should help you understand
+what it does.</p>
 <pre class="r"><code>#&#39; Find the cumulative maximal streak length in a vector of bools.
 #&#39; 
 #&#39; @param bools Logical vector.
@@ -92,7 +143,8 @@ streaks = function(bools) {
   
 }
 </code></pre>
-<p>The <code>streaks</code> function is used to find probabilities of rejecting the null inside the following function:</p>
+<p>The <code>streaks</code> function is used to find probabilities of rejecting the null
+inside the following function:</p>
 <pre class="r"><code>#&#39; Simulate a compensating sequential design
 #&#39; 
 #&#39; Finds the probability of falsly rejecting the null-hypothesis for a 
@@ -131,6 +183,8 @@ streak_stopping = function(n, N, C = qnorm(0.95), scenario = &quot;A&quot;) {
 })</code></pre>
 <div id="comments-on-the-code" class="section level2">
 <h2>Comments on the code</h2>
-<p>The source code for this document, written in <code>bookdown</code>, is available at <a href="https://github.com/JonasMoss/BurnishedMossite">Github</a>. An <code>R</code> file reproducing the plots is <a href="https://gist.github.com/JonasMoss/8f8e74fc675cc332f5e949862c909f03">here</a>.</p>
+<p>The source code for this document, written in <code>bookdown</code>, is available at
+<a href="https://github.com/JonasMoss/BurnishedMossite">Github</a>. An <code>R</code> file reproducing
+the plots is <a href="https://gist.github.com/JonasMoss/8f8e74fc675cc332f5e949862c909f03">here</a>.</p>
 </div>
 </div>

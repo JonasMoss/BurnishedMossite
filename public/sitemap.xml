@@ -3,136 +3,122 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/2018/09/smrw-variorum/</loc>
+    <loc>https://blog.jonasmoss.com/</loc>
     <lastmod>2018-09-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/08/easy-lambda/</loc>
+    <loc>https://blog.jonasmoss.com/categories/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/tags/history/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/tags/philosophy/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/post/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/categories/statistics/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/tags/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/2018/09/smrw-variorum/</loc>
+    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/2018/08/easy-lambda/</loc>
     <lastmod>2018-08-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/08/h-function/</loc>
+    <loc>https://blog.jonasmoss.com/tags/non-standard-evaluation/</loc>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/categories/programming/</loc>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/tags/r/</loc>
+    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/2018/08/h-function/</loc>
     <lastmod>2018-08-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/08/synthese-neyman-1977/</loc>
+    <loc>https://blog.jonasmoss.com/tags/commentary/</loc>
     <lastmod>2018-08-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/08/berkson-commentary/</loc>
+    <loc>https://blog.jonasmoss.com/2018/08/synthese-neyman-1977/</loc>
+    <lastmod>2018-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/tags/frequentism/</loc>
+    <lastmod>2018-08-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/2018/08/berkson-commentary/</loc>
     <lastmod>2018-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://blog.jonasmoss.com/about/</loc>
     <lastmod>2018-08-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2018/04/optional-stopping-streaks/</loc>
+    <loc>https://blog.jonasmoss.com/tags/optional-stopping/</loc>
     <lastmod>2018-04-28T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/about/</loc>
-  </url>
-  
-  <url>
-    <loc>/archives/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/commentary/</loc>
-    <lastmod>2018-08-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/frequentism/</loc>
-    <lastmod>2018-08-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/history/</loc>
-    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/non-standard-evaluation/</loc>
-    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/optional-stopping/</loc>
+    <loc>https://blog.jonasmoss.com/2018/04/optional-stopping-streaks/</loc>
     <lastmod>2018-04-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/philosophy/</loc>
-    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/programming/</loc>
-    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/psychological-methods/</loc>
+    <loc>https://blog.jonasmoss.com/tags/psychological-methods/</loc>
     <lastmod>2018-04-28T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
-    <lastmod>2018-08-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/science/</loc>
+    <loc>https://blog.jonasmoss.com/categories/science/</loc>
     <lastmod>2018-04-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.jonasmoss.com/about/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/statistics/</loc>
-    <lastmod>2018-09-12T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2018-08-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://blog.jonasmoss.com/archives/</loc>
   </url>
   
 </urlset>
