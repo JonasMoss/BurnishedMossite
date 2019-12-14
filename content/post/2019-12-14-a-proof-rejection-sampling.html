@@ -1,0 +1,73 @@
+---
+title: A proof rejection sampling
+author: Jonas Moss
+date: '2019-12-14'
+slug: a-proof-rejection-sampling
+categories: [statistics]
+tags: [mathematics, sampling]
+bibliography: 2019-12-14-a-proof-rejection-sampling.bib
+---
+
+
+
+<p>Let <span class="math inline">\(f\left(x\right)\)</span> be a density and <span class="math inline">\(\pi\left(x\right)\)</span> be a
+function satisfying <span class="math inline">\(0\leq\pi\left(x\right)\leq1\)</span>. In other words,
+<span class="math inline">\(\pi\left(x\right)\)</span> is a probability for every <span class="math inline">\(x\)</span>. Then <span class="math inline">\(g\left(x\right)\propto f\left(x\right)\pi\left(x\right)\)</span>
+is density, since <span class="math inline">\(\rho=\int f\left(x\right)\pi\left(x\right)dx&lt;1\)</span>.
+This is an example of a , a class of models
+introduced by <span class="citation">Rao (1965)</span>. Since <span class="math inline">\(p\left(x\right)\)</span>
+is a probability, we can call this a .
+This note views rejection sampling <span class="citation">(Neumann 1951)</span> as sampling
+from a particular sort of probability weighted density. The intuitively
+correct way to sample from a probability weighted density is by using
+a natural form of rejection sampling. The sampling consists of two
+steps: First sample a proposal <span class="math inline">\(y\)</span> from <span class="math inline">\(f\)</span>, then accept it with
+probability <span class="math inline">\(\pi\left(y\right)\)</span>.</p>
+<div id="proposition" class="section level3">
+<h3>Proposition</h3>
+<p>The following methods gives samples from the probability weighted
+density <span class="math inline">\(g=\rho^{-1}f\left(x\right)\pi\left(x\right)\)</span>: i.) Sample
+a proposal <span class="math inline">\(y\)</span> from <span class="math inline">\(f\)</span>, ii.) accept it with probability <span class="math inline">\(\pi\left(y\right)\)</span>.
+Moreover, if <span class="math inline">\(T\)</span> is the number of proposals <span class="math inline">\(y\)</span> until success, then
+<span class="math inline">\(T\)</span> is geometric with probability parameter <span class="math inline">\(\rho\)</span>.</p>
+<div id="proof" class="section level4">
+<h4>Proof</h4>
+<p>Let <span class="math inline">\(\left\{ Y_{i}\right\} _{i=1}^{\infty}\)</span> be a sequence of proposals
+sampled from <span class="math inline">\(f\)</span>, let <span class="math inline">\(\left\{ Z_{i}\right\} _{i=1}^{\infty}\)</span> be
+conditionally <span class="math inline">\(\textrm{Bernoulli}\left(\pi\left(Y_{i}\right)\right)\)</span>,
+and let <span class="math inline">\(T\)</span> be the first time <span class="math inline">\(Z_{i}=1\)</span>. Letting <span class="math inline">\(V=Y_{T}\)</span>, the
+mathematical formalization of the algorithm above is to let <span class="math inline">\(V\)</span> be
+our sample. Our goal is to prove that <span class="math inline">\(p\left(v\right)=g\left(v\right)\)</span>,
+where <span class="math inline">\(p\left(v\right)\)</span> is the density of <span class="math inline">\(V\)</span>. First observe that
+<span class="math inline">\(p\left(T=1,v\right)=\pi\left(v\right)f\left(v\right)\)</span>. Using this
+observation we see that <span class="math inline">\(p\left(T=1\right)=\int f\left(y\right)\pi\left(y\right)dy=\rho\)</span>,
+and since the attempts are independent, the distribution of <span class="math inline">\(T\)</span> is
+geometric. As <span class="math inline">\(V\)</span> is independent of <span class="math inline">\(T\)</span>, <span class="math inline">\(p\left(v\mid T=1\right)=p\left(v\right)\)</span>,
+and since <span class="math inline">\(p\left(v\mid T=1\right)=p\left(T=1,v\right)\rho^{-1},\)</span>we
+get that <span class="math inline">\(p\left(v\right)=\rho^{-1}\pi\left(v\right)f\left(v\right)\)</span>
+as claimed.</p>
+</div>
+</div>
+<div id="connection-to-rejection-sampling" class="section level3">
+<h3>Connection to rejection sampling</h3>
+<p>Assume <span class="math inline">\(f,g\)</span> are densities such that <span class="math inline">\(f\left(x\right)\leq Mg\left(x\right)\)</span>
+for every <span class="math inline">\(x\)</span>. Then <span class="math inline">\(f\)</span> is equal to the probability weighted model
+<span class="math inline">\(f\left(x\right)\propto g\left(x\right)p\left(x\right)\)</span>, where <span class="math inline">\(p\left(x\right)=\frac{f\left(x\right)}{Mg\left(x\right)}\)</span>.
+The usual rejection sampling methodology follows, together with the
+common remark (in e.g. <span class="citation">Robert and Casella (2013)</span>) that <span class="math inline">\(M\)</span> is the mean
+number of proposals before rejection.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-von1951various">
+<p>Neumann, John von. 1951. “Various Techniques Used in Connection with Random Digits.” <em>Applied Math Series</em> 12 (36-38): 1.</p>
+</div>
+<div id="ref-rao1965discrete">
+<p>Rao, C Radhakrishna. 1965. “On Discrete Distributions Arising Out of Methods of Ascertainment.” <em>Sankhyā: The Indian Journal of Statistics, Series A</em>, 311–24.</p>
+</div>
+<div id="ref-robert2013monte">
+<p>Robert, Christian, and George Casella. 2013. <em>Monte Carlo Statistical Methods</em>. Springer Science &amp; Business Media.</p>
+</div>
+</div>
+</div>

@@ -1,0 +1,56 @@
+---
+title: A proof rejection sampling
+author: Jonas Moss
+date: '2019-12-14'
+slug: a-proof-rejection-sampling
+categories: [statistics]
+tags: [mathematics, sampling]
+bibliography: 2019-12-14-a-proof-rejection-sampling.bib
+---
+
+Let $f\left(x\right)$ be a density and $\pi\left(x\right)$ be a
+function satisfying $0\leq\pi\left(x\right)\leq1$. In other words,
+$\pi\left(x\right)$ is a probability for every $x$. Then $g\left(x\right)\propto f\left(x\right)\pi\left(x\right)$
+is density, since $\rho=\int f\left(x\right)\pi\left(x\right)dx<1$.
+This is an example of a \emph{weighted density}, a class of models
+introduced by @rao1965discrete. Since $p\left(x\right)$
+is a probability, we can call this a \emph{probability weighted density}.
+This note views rejection sampling [@von1951various] as sampling
+from a particular sort of probability weighted density. The intuitively
+correct way to sample from a probability weighted density is by using
+a natural form of rejection sampling. The sampling consists of two
+steps: First sample a proposal $y$ from $f$, then accept it with
+probability $\pi\left(y\right)$.
+
+### Proposition
+The following methods gives samples from the probability weighted
+density $g=\rho^{-1}f\left(x\right)\pi\left(x\right)$: i.) Sample
+a proposal $y$ from $f$, ii.) accept it with probability $\pi\left(y\right)$.
+Moreover, if $T$ is the number of proposals $y$ until success, then
+$T$ is geometric with probability parameter $\rho$.
+
+#### Proof
+Let $\left\{ Y_{i}\right\} _{i=1}^{\infty}$ be a sequence of proposals
+sampled from $f$, let $\left\{ Z_{i}\right\} _{i=1}^{\infty}$ be
+conditionally $\textrm{Bernoulli}\left(\pi\left(Y_{i}\right)\right)$,
+and let $T$ be the first time $Z_{i}=1$. Letting $V=Y_{T}$, the
+mathematical formalization of the algorithm above is to let $V$ be
+our sample. Our goal is to prove that $p\left(v\right)=g\left(v\right)$,
+where $p\left(v\right)$ is the density of $V$. First observe that
+$p\left(T=1,v\right)=\pi\left(v\right)f\left(v\right)$. Using this
+observation we see that $p\left(T=1\right)=\int f\left(y\right)\pi\left(y\right)dy=\rho$,
+and since the attempts are independent, the distribution of $T$ is
+geometric. As $V$ is independent of $T$, $p\left(v\mid T=1\right)=p\left(v\right)$,
+and since $p\left(v\mid T=1\right)=p\left(T=1,v\right)\rho^{-1},$we
+get that $p\left(v\right)=\rho^{-1}\pi\left(v\right)f\left(v\right)$
+as claimed.
+
+### Connection to rejection sampling
+Assume $f,g$ are densities such that $f\left(x\right)\leq Mg\left(x\right)$
+for every $x$. Then $f$ is equal to the probability weighted model
+$f\left(x\right)\propto g\left(x\right)p\left(x\right)$, where $p\left(x\right)=\frac{f\left(x\right)}{Mg\left(x\right)}$.
+The usual rejection sampling methodology follows, together with the
+common remark (in e.g. @robert2013monte) that $M$ is the mean
+number of proposals before rejection.
+
+## References
