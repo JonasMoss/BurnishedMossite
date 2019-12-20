@@ -1,0 +1,104 @@
+---
+title: Implied alternatives
+author: Jonas Moss
+date: '2019-12-20'
+slug: implied-alternatives
+tags:
+- philosophy
+categories:
+- statistics
+---
+
+Sometimes people talk about *p*-values without alternative hypotheses. I will 
+now explain why this is wrong-headed. It is wrong-headed since there is always 
+a set of *implied alternatives*.
+
+Take any *p*-value $U$. By definition, $U$ is uniform under the null hypothesis 
+$H_0$ that the true probability measure is $P$. All is fine and good. Now 
+assume that $Q$ is the true probability measure and that the distribution 
+function $Q(U \leq u)$ looks like this:
+
+```{r bad p-value}
+u = seq(0, 1, by = 0.001)
+plot(x = u, y = u, type = "l", main = "p-value", xlab = "p-value", 
+     ylab = "Cumulative probability")
+lines(x = u, y = pbeta(u, 2, 1), col = "red")
+```
+
+Would it make sense to use $U$ as some measure of evidence against $P$ in this 
+case? No, it wouldn't. It wouldn't make sense because the evidence against $P$ 
+contained in $U$ is even *more* evidence against $Q$ than against $P$ for *any*
+value of $U$ except $0$ and $1$!
+
+This observation gives rise to the notion of *implied alternatives*. To get to 
+this notion, notice that $Q$ is not an implied alternative. It is not an 
+implied alternative since you would never consider using $U$ as your *p*-value
+if you knew $Q$ was the true alternative.
+
+When can bizarre alternatives such as $Q$ occur?
+
+One example when using one-sided testing of a zero mean against a positive mean; 
+here a negative mean is not in the set of implied alternatives. A slightly
+harder example is using the two-sided $Z$-test to test $\sigma = 1$ against
+$\sigma < 1$.
+
+```{r, bad normal}
+z = seq(-5, 5, by = 0.01)
+u = pnorm(abs(z))
+plot(x = 2*(1 - u), y = 2*(1 - u), 
+     type = "l", main = "p-value",
+     xlab = "p-value", ylab = "Cumulative probability")
+lines(x = 2*(1 - u), y = 2*(1 - pnorm(abs(z), sd = 0.5)), 
+      col = "red")
+lines(x = 2*(1 - u), y = 2*(1 - pnorm(abs(z), sd = 2)), 
+      col = "blue")
+```
+
+Here $N\left(0,1/2\right)$ (red line) is not an implied alternative since its
+curve is dominated by the black line $y=x$. On the other hand, 
+$N\left(0,2\right)$ (blue curve) is an implied alternative. 
+
+Another example is from 
+[Berkson (1942)](https://www.jstor.org/stable/pdf/2279000.pdf), who 
+discussed a test of the Poisson assumption that essentially tests for 
+overdispersion. See my [previous blog post](https://blog.jonasmoss.com/2018/08/berkson-commentary/).
+
+What about curves that cross the $y=x$? Take the following *p*-values:
+
+```{r, beta example}
+u = seq(0, 1, by = 0.01)
+plot(x = u, y = u, 
+     type = "l", main = "p-value",
+     xlab = "p-value", ylab = "Cumulative probability")
+lines(x = u, y = pbeta(u, 1/2, 1/2), 
+      col = "red")
+lines(x = u, y = pbeta(u, 2, 2), 
+      col = "blue")
+
+```
+Is either of these an implied alternative? Since we are mainly interested in 
+small *p*-values, we could regard the red curve as an implied alternative. It
+would be strange to view the blue curve as an implied alternative as it only 
+has power against $P$ when the *p*-value is greater than $0.5$.
+
+I can think of two reasonable definitions of implied alternatives:
+
+i) Demand that $Q\left(u\right) \geq u$ for all $u$. This corresponds to a
+sequence of hypothesis tests of $P$ against $Q$ that is unbiased for every 
+level $\alpha$.
+iia) Demand that $Q\left(u\right) \geq u$ for all $u<\epsilon$. Then $Q$ is an
+$\epsilon$-implied alternative. This corresponds to a
+sequence of hypothesis tests of $P$ against $Q$ that is unbiased for every 
+level $\alpha<\epsilon$.
+iib) Let the family of implied alternatives the union of all $\epsilon$-implied
+alternatives.
+
+Hence $Q$ is an $\epsilon$-implied alternative if there is an $\epsilon$ such
+that a *p*-value less than $\epsilon$ is less probably under $P$ than under
+$Q$.
+
+Now let $\mathcal{Q}$ denote the set of implied alternatives under either
+definition. Anyone who claims that their *p*-value does not need alternative 
+hypothesis should be able to  explain why it makes sense to check the 
+truthfulness of $P$ using $U$ when some $Q \in \mathcal{Q}^c$ is the true 
+distribution.

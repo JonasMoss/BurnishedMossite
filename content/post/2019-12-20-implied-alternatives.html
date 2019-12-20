@@ -1,0 +1,89 @@
+---
+title: Implied alternatives
+author: Jonas Moss
+date: '2019-12-20'
+slug: implied-alternatives
+tags:
+- philosophy
+categories:
+- statistics
+---
+
+
+
+<p>Sometimes people talk about <em>p</em>-values without alternative hypotheses. I will
+now explain why this is wrong-headed. It is wrong-headed since there is always
+a set of <em>implied alternatives</em>.</p>
+<p>Take any <em>p</em>-value <span class="math inline">\(U\)</span>. By definition, <span class="math inline">\(U\)</span> is uniform under the null hypothesis
+<span class="math inline">\(H_0\)</span> that the true probability measure is <span class="math inline">\(P\)</span>. All is fine and good. Now
+assume that <span class="math inline">\(Q\)</span> is the true probability measure and that the distribution
+function <span class="math inline">\(Q(U \leq u)\)</span> looks like this:</p>
+<pre class="r"><code>u = seq(0, 1, by = 0.001)
+plot(x = u, y = u, type = &quot;l&quot;, main = &quot;p-value&quot;, xlab = &quot;p-value&quot;, 
+     ylab = &quot;Cumulative probability&quot;)
+lines(x = u, y = pbeta(u, 2, 1), col = &quot;red&quot;)</code></pre>
+<p><img src="/post/2019-12-20-implied-alternatives_files/figure-html/bad%20p-value-1.png" width="672" /></p>
+<p>Would it make sense to use <span class="math inline">\(U\)</span> as some measure of evidence against <span class="math inline">\(P\)</span> in this
+case? No, it wouldn’t. It wouldn’t make sense because the evidence against <span class="math inline">\(P\)</span>
+contained in <span class="math inline">\(U\)</span> is even <em>more</em> evidence against <span class="math inline">\(Q\)</span> than against <span class="math inline">\(P\)</span> for <em>any</em>
+value of <span class="math inline">\(U\)</span> except <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>!</p>
+<p>This observation gives rise to the notion of <em>implied alternatives</em>. To get to
+this notion, notice that <span class="math inline">\(Q\)</span> is not an implied alternative. It is not an
+implied alternative since you would never consider using <span class="math inline">\(U\)</span> as your <em>p</em>-value
+if you knew <span class="math inline">\(Q\)</span> was the true alternative.</p>
+<p>When can bizarre alternatives such as <span class="math inline">\(Q\)</span> occur?</p>
+<p>One example when using one-sided testing of a zero mean against a positive mean;
+here a negative mean is not in the set of implied alternatives. A slightly
+harder example is using the two-sided <span class="math inline">\(Z\)</span>-test to test <span class="math inline">\(\sigma = 1\)</span> against
+<span class="math inline">\(\sigma &lt; 1\)</span>.</p>
+<pre class="r"><code>z = seq(-5, 5, by = 0.01)
+u = pnorm(abs(z))
+plot(x = 2*(1 - u), y = 2*(1 - u), 
+     type = &quot;l&quot;, main = &quot;p-value&quot;,
+     xlab = &quot;p-value&quot;, ylab = &quot;Cumulative probability&quot;)
+lines(x = 2*(1 - u), y = 2*(1 - pnorm(abs(z), sd = 0.5)), 
+      col = &quot;red&quot;)
+lines(x = 2*(1 - u), y = 2*(1 - pnorm(abs(z), sd = 2)), 
+      col = &quot;blue&quot;)</code></pre>
+<p><img src="/post/2019-12-20-implied-alternatives_files/figure-html/bad%20normal-1.png" width="672" /></p>
+<p>Here <span class="math inline">\(N\left(0,1/2\right)\)</span> (red line) is not an implied alternative since its
+curve is dominated by the black line <span class="math inline">\(y=x\)</span>. On the other hand,
+<span class="math inline">\(N\left(0,2\right)\)</span> (blue curve) is an implied alternative.</p>
+<p>Another example is from
+<a href="https://www.jstor.org/stable/pdf/2279000.pdf">Berkson (1942)</a>, who
+discussed a test of the Poisson assumption that essentially tests for
+overdispersion. See my <a href="https://blog.jonasmoss.com/2018/08/berkson-commentary/">previous blog post</a>.</p>
+<p>What about curves that cross the <span class="math inline">\(y=x\)</span>? Take the following <em>p</em>-values:</p>
+<pre class="r"><code>u = seq(0, 1, by = 0.01)
+plot(x = u, y = u, 
+     type = &quot;l&quot;, main = &quot;p-value&quot;,
+     xlab = &quot;p-value&quot;, ylab = &quot;Cumulative probability&quot;)
+lines(x = u, y = pbeta(u, 1/2, 1/2), 
+      col = &quot;red&quot;)
+lines(x = u, y = pbeta(u, 2, 2), 
+      col = &quot;blue&quot;)</code></pre>
+<p><img src="/post/2019-12-20-implied-alternatives_files/figure-html/beta%20example-1.png" width="672" />
+Is either of these an implied alternative? Since we are mainly interested in
+small <em>p</em>-values, we could regard the red curve as an implied alternative. It
+would be strange to view the blue curve as an implied alternative as it only
+has power against <span class="math inline">\(P\)</span> when the <em>p</em>-value is greater than <span class="math inline">\(0.5\)</span>.</p>
+<p>I can think of two reasonable definitions of implied alternatives:</p>
+<ol style="list-style-type: lower-roman">
+<li>Demand that <span class="math inline">\(Q\left(u\right) \geq u\)</span> for all <span class="math inline">\(u\)</span>. This corresponds to a
+sequence of hypothesis tests of <span class="math inline">\(P\)</span> against <span class="math inline">\(Q\)</span> that is unbiased for every
+level <span class="math inline">\(\alpha\)</span>.
+iia) Demand that <span class="math inline">\(Q\left(u\right) \geq u\)</span> for all <span class="math inline">\(u&lt;\epsilon\)</span>. Then <span class="math inline">\(Q\)</span> is an
+<span class="math inline">\(\epsilon\)</span>-implied alternative. This corresponds to a
+sequence of hypothesis tests of <span class="math inline">\(P\)</span> against <span class="math inline">\(Q\)</span> that is unbiased for every
+level <span class="math inline">\(\alpha&lt;\epsilon\)</span>.
+iib) Let the family of implied alternatives the union of all <span class="math inline">\(\epsilon\)</span>-implied
+alternatives.</li>
+</ol>
+<p>Hence <span class="math inline">\(Q\)</span> is an <span class="math inline">\(\epsilon\)</span>-implied alternative if there is an <span class="math inline">\(\epsilon\)</span> such
+that a <em>p</em>-value less than <span class="math inline">\(\epsilon\)</span> is less probably under <span class="math inline">\(P\)</span> than under
+<span class="math inline">\(Q\)</span>.</p>
+<p>Now let <span class="math inline">\(\mathcal{Q}\)</span> denote the set of implied alternatives under either
+definition. Anyone who claims that their <em>p</em>-value does not need alternative
+hypothesis should be able to explain why it makes sense to check the
+truthfulness of <span class="math inline">\(P\)</span> using <span class="math inline">\(U\)</span> when some <span class="math inline">\(Q \in \mathcal{Q}^c\)</span> is the true
+distribution.</p>
